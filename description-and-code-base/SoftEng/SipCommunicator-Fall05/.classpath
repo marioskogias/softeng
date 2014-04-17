@@ -10,5 +10,6 @@
 	<classpathentry kind="lib" path="lib/jmf-native.jar"/>
 	<classpathentry kind="lib" path="lib/sound.jar"/>
 	<classpathentry kind="con" path="org.eclipse.jdt.launching.JRE_CONTAINER/org.eclipse.jdt.internal.debug.ui.launcher.StandardVMType/Home"/>
+	<classpathentry kind="lib" path="/Users/marioskogias/Documents/ntua/soft-eng/project/softeng/description-and-code-base/SoftEng/SipCommunicator-Fall05/lib/mysql-connector-java-5.1.18-bin.jar"/>
 	<classpathentry kind="output" path=""/>
 </classpath>

@@ -16,7 +16,8 @@ public class ParseXMLCredentials {
 
 	private String username;
 	private String password;
-
+	private String url;
+	
 	public String getUsername() {
 		return username;
 	}
@@ -25,7 +26,10 @@ public class ParseXMLCredentials {
 		return password;
 	}
 
-	
+	public String getUrl() {
+		return url;
+	}
+
 	public ParseXMLCredentials() {
 		File fXmlFile = new File("net/java/sip/communicator/db/dbCredentials.xml");
 		DocumentBuilderFactory dbFactory = DocumentBuilderFactory.newInstance();
@@ -40,6 +44,8 @@ public class ParseXMLCredentials {
 			
 			username = n.getElementsByTagName("username").item(0).getTextContent();
 			password = n.getElementsByTagName("password").item(0).getTextContent();
+			url = n.getElementsByTagName("url").item(0).getTextContent();
+			
 		} catch (ParserConfigurationException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
