@@ -275,6 +275,21 @@ public class Registrar
 				return;
 			}
 
+			/*
+			 * Before the sip registration standard process we have to check if
+			 * the user is already in the database. If not response NOT_FOUND
+			 */
+			String username = key.split("@")[0].split(":")[1];
+			if (!dbManager.checkRegister(username)) {
+				Response response = messageFactory.createResponse(
+						Response.NOT_FOUND, request);
+				if (serverTransaction != null)
+					serverTransaction.sendResponse(response);
+				else
+					sipProvider.sendResponse(response);
+				return;
+				
+			}
 			// RFC 3261: 10.3:
 			/*
 			 * 6. The registrar checks whether the request contains the Contact
