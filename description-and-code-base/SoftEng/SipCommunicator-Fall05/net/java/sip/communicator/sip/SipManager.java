@@ -1735,6 +1735,8 @@ public class SipManager
                 if (method.equals(Request.SUBSCRIBE)) {
                     watcher.processNotFound(clientTransaction, response);
                 }
+                if (method.equals(Request.REGISTER))
+                	securityAuthority.obtainCredentialsAndRegister();
                 else {
                     fireUnknownMessageReceived(response);
                 }

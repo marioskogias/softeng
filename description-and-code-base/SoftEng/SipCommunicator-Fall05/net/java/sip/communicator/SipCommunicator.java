@@ -754,7 +754,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 
 			credentials.setUserName(guiManager.getAuthenticationUserName());
 			credentials.setPassword(guiManager.getAuthenticationPassword());
-
+	
 			//Register with the db manager here
 			
 			return credentials;

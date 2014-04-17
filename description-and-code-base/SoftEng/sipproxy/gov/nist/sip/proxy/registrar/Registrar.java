@@ -58,6 +58,7 @@ public class Registrar
 	public Registrar(Proxy proxy) throws RemoteException {
 		this.proxy = proxy;
 		registrationsTable = new RegistrationsTable(this);
+		this.dbManager = new RegisterDB();
 	}
 
 	public void registerToProxies() {
