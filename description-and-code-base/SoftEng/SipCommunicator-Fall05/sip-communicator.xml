@@ -33,7 +33,7 @@
             <PUBLIC_ADDRESS value="sip:jmaria"/>
             <TRANSPORT value=""/>
             <REGISTRAR_ADDRESS value="127.0.0.1:4000"/>
-            <USER_NAME value=""/>
+            <USER_NAME value="marios"/>
             <STACK_PATH value="gov.nist"/>
             <PREFERRED_LOCAL_PORT value="5060"/>
             <DISPLAY_NAME value="jmaria"/>
