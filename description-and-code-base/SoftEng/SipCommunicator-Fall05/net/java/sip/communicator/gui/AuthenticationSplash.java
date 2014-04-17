@@ -73,466 +73,434 @@ import net.java.sip.communicator.common.*;
 /**
  * Sample login splash screen
  */
-public class AuthenticationSplash
-    extends JDialog
-{
-    String userName = null;
-    char[] password = null;
-    JTextField userNameTextField = null;
-    JLabel     realmValueLabel = null;
-    JPasswordField passwordTextField = null;
+public class AuthenticationSplash extends JDialog {
+	String userName = null;
+	char[] password = null;
+	JTextField userNameTextField = null;
+	JLabel realmValueLabel = null;
+	JPasswordField passwordTextField = null;
 
-    /**
-     * Resource bundle with default locale
-     */
-    private ResourceBundle resources = null;
+	/**
+	 * Resource bundle with default locale
+	 */
+	private ResourceBundle resources = null;
 
-    /**
-     * Path to the image resources
-     */
-    private String imagePath = null;
+	/**
+	 * Path to the image resources
+	 */
+	private String imagePath = null;
 
-    /**
-     * Command string for a cancel action (e.g., a button).
-     * This string is never presented to the user and should
-     * not be internationalized.
-     */
-    private String CMD_CANCEL = "cmd.cancel" /*NOI18N*/;
+	/**
+	 * Command string for a cancel action (e.g., a button). This string is never
+	 * presented to the user and should not be internationalized.
+	 */
+	private String CMD_CANCEL = "cmd.cancel" /* NOI18N */;
 
-    /**
-     * Command string for a help action (e.g., a button).
-     * This string is never presented to the user and should
-     * not be internationalized.
-     */
-    private String CMD_HELP = "cmd.help" /*NOI18N*/;
+	/**
+	 * Command string for a help action (e.g., a button). This string is never
+	 * presented to the user and should not be internationalized.
+	 */
+	private String CMD_HELP = "cmd.help" /* NOI18N */;
 
-    /**
-     * Command string for a login action (e.g., a button).
-     * This string is never presented to the user and should
-     * not be internationalized.
-     */
-    private String CMD_LOGIN = "cmd.login" /*NOI18N*/;
+	/**
+	 * Command string for a login action (e.g., a button). This string is never
+	 * presented to the user and should not be internationalized.
+	 */
+	private String CMD_LOGIN = "cmd.login" /* NOI18N */;
 
-    /**
-     * Command string for a register action (e.g., a button).
-     * This string is never presented to the user and should
-     * not be internationalized.
-     */
-    private String CMD_REGISTER = "cmd.register" /*NOI18N*/;
+	/**
+	 * Command string for a register action (e.g., a button). This string is
+	 * never presented to the user and should not be internationalized.
+	 */
+	private String CMD_REGISTER = "cmd.register" /* NOI18N */;
 
-    // Components we need to manipulate after creation
-    private JButton loginButton = null;
-    private JButton cancelButton = null;
-    private JButton helpButton = null;
-    private JButton registerButton = null;
-    /**
-     * Creates new form AuthenticationSplash
-     */
-    public AuthenticationSplash(Frame parent, boolean modal)
-    {
-        super(parent, modal);
-        initResources();
-        initComponents();
-        pack();
-        centerWindow();
-    }
+	// Components we need to manipulate after creation
+	private JButton loginButton = null;
+	private JButton cancelButton = null;
+	private JButton helpButton = null;
+	private JButton registerButton = null;
 
-    /**
-     * Loads locale-specific resources: strings, images, et cetera
-     */
-    private void initResources()
-    {
-        Locale locale = Locale.getDefault();
-        imagePath = ".";
-    }
+	/**
+	 * Creates new form AuthenticationSplash
+	 */
+	public AuthenticationSplash(Frame parent, boolean modal) {
+		super(parent, modal);
+		initResources();
+		initComponents();
+		pack();
+		centerWindow();
+	}
 
-    /**
-     * Centers the window on the screen.
-     */
-    private void centerWindow()
-    {
-        Rectangle screen = new Rectangle(
-            Toolkit.getDefaultToolkit().getScreenSize());
-        Point center = new Point(
-            (int) screen.getCenterX(), (int) screen.getCenterY());
-        Point newLocation = new Point(
-            center.x - this.getWidth() / 2, center.y - this.getHeight() / 2);
-        if (screen.contains(newLocation.x, newLocation.y,
-                            this.getWidth(), this.getHeight())) {
-            this.setLocation(newLocation);
-        }
-    } // centerWindow()
+	/**
+	 * Loads locale-specific resources: strings, images, et cetera
+	 */
+	private void initResources() {
+		Locale locale = Locale.getDefault();
+		imagePath = ".";
+	}
 
-    /**
-     *
-     * We use dynamic layout managers, so that layout is dynamic and will
-     * adapt properly to user-customized fonts and localized text. The
-     * GridBagLayout makes it easy to line up components of varying
-     * sizes along invisible vertical and horizontal grid lines. It
-     * is important to sketch the layout of the interface and decide
-     * on the grid before writing the layout code.
-     *
-     * Here we actually use
-     * our own subclass of GridBagLayout called StringGridBagLayout,
-     * which allows us to use strings to specify constraints, rather
-     * than having to create GridBagConstraints objects manually.
-     *
-     *
-     * We use the JLabel.setLabelFor() method to connect
-     * labels to what they are labeling. This allows mnemonics to work
-     * and assistive to technologies used by persons with disabilities
-     * to provide much more useful information to the user.
-     */
-    private void initComponents()
-    {
-        Container contents = getContentPane();
-        contents.setLayout(new BorderLayout());
+	/**
+	 * Centers the window on the screen.
+	 */
+	private void centerWindow() {
+		Rectangle screen = new Rectangle(Toolkit.getDefaultToolkit()
+				.getScreenSize());
+		Point center = new Point((int) screen.getCenterX(),
+				(int) screen.getCenterY());
+		Point newLocation = new Point(center.x - this.getWidth() / 2, center.y
+				- this.getHeight() / 2);
+		if (screen.contains(newLocation.x, newLocation.y, this.getWidth(),
+				this.getHeight())) {
+			this.setLocation(newLocation);
+		}
+	} // centerWindow()
 
-        String title = Utils.getProperty("net.java.sip.communicator.gui.AUTH_WIN_TITLE");
+	/**
+	 * 
+	 * We use dynamic layout managers, so that layout is dynamic and will adapt
+	 * properly to user-customized fonts and localized text. The GridBagLayout
+	 * makes it easy to line up components of varying sizes along invisible
+	 * vertical and horizontal grid lines. It is important to sketch the layout
+	 * of the interface and decide on the grid before writing the layout code.
+	 * 
+	 * Here we actually use our own subclass of GridBagLayout called
+	 * StringGridBagLayout, which allows us to use strings to specify
+	 * constraints, rather than having to create GridBagConstraints objects
+	 * manually.
+	 * 
+	 * 
+	 * We use the JLabel.setLabelFor() method to connect labels to what they are
+	 * labeling. This allows mnemonics to work and assistive to technologies
+	 * used by persons with disabilities to provide much more useful information
+	 * to the user.
+	 */
+	private void initComponents() {
+		Container contents = getContentPane();
+		contents.setLayout(new BorderLayout());
 
-        if(title == null)
-            title = "Registrar Login";
+		String title = Utils
+				.getProperty("net.java.sip.communicator.gui.AUTH_WIN_TITLE");
 
-        setTitle(title);
-        setResizable(false);
-        addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing(WindowEvent event)
-            {
-                dialogDone(CMD_CANCEL);
-            }
-        });
+		if (title == null)
+			title = "Registrar Login";
 
-        // Accessibility -- all frames, dialogs, and applets should
-        // have a description
-        getAccessibleContext().setAccessibleDescription("Authentication Splash");
+		setTitle(title);
+		setResizable(false);
+		addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent event) {
+				dialogDone(CMD_CANCEL);
+			}
+		});
 
-        String authPromptLabelValue = Utils.getProperty("net.java.sip.communicator.gui.AUTHENTICATION_PROMPT");
+		// Accessibility -- all frames, dialogs, and applets should
+		// have a description
+		getAccessibleContext()
+				.setAccessibleDescription("Authentication Splash");
 
-        if(authPromptLabelValue  == null)
-            authPromptLabelValue  = "Please enter user name and password to use when registering!";
+		String authPromptLabelValue = Utils
+				.getProperty("net.java.sip.communicator.gui.AUTHENTICATION_PROMPT");
 
-        JLabel splashLabel = new JLabel(authPromptLabelValue );
-        splashLabel.setBorder(BorderFactory.createEmptyBorder(10,10,10,10));
-        splashLabel.setHorizontalAlignment(SwingConstants.CENTER);
-        splashLabel.setHorizontalTextPosition(SwingConstants.CENTER);
-        contents.add(splashLabel, BorderLayout.NORTH);
+		if (authPromptLabelValue == null)
+			authPromptLabelValue = "Please enter user name and password to use when registering!";
 
-        JPanel centerPane = new JPanel();
-        centerPane.setLayout(new GridBagLayout());
+		JLabel splashLabel = new JLabel(authPromptLabelValue);
+		splashLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
+		splashLabel.setHorizontalAlignment(SwingConstants.CENTER);
+		splashLabel.setHorizontalTextPosition(SwingConstants.CENTER);
+		contents.add(splashLabel, BorderLayout.NORTH);
 
-        userNameTextField = new JTextField(); // needed below
+		JPanel centerPane = new JPanel();
+		centerPane.setLayout(new GridBagLayout());
 
-        // user name label
-        JLabel userNameLabel = new JLabel();
-        userNameLabel.setDisplayedMnemonic('U');
-        // setLabelFor() allows the mnemonic to work
-        userNameLabel.setLabelFor(userNameTextField);
+		userNameTextField = new JTextField(); // needed below
 
-        String userNameLabelValue = Utils.getProperty("net.java.sip.communicator.gui.USER_NAME_LABEL");
+		// user name label
+		JLabel userNameLabel = new JLabel();
+		userNameLabel.setDisplayedMnemonic('U');
+		// setLabelFor() allows the mnemonic to work
+		userNameLabel.setLabelFor(userNameTextField);
 
-        if(userNameLabelValue == null)
-            userNameLabelValue = "User name";
+		String userNameLabelValue = Utils
+				.getProperty("net.java.sip.communicator.gui.USER_NAME_LABEL");
 
-        int gridy = 0;
+		if (userNameLabelValue == null)
+			userNameLabelValue = "User name";
 
-        userNameLabel.setText(userNameLabelValue);
-        GridBagConstraints c = new GridBagConstraints();
-        c.gridx=0;
-        c.gridy=gridy;
-        c.anchor=GridBagConstraints.WEST;
-        c.insets=new Insets(12,12,0,0);
-        centerPane.add(userNameLabel, c);
+		int gridy = 0;
 
-        // user name text
-        c = new GridBagConstraints();
-        c.gridx=1;
-        c.gridy=gridy++;
-        c.fill=GridBagConstraints.HORIZONTAL;
-        c.weightx=1.0;
-        c.insets=new Insets(12,7,0,11);
-        centerPane.add(userNameTextField, c);
+		userNameLabel.setText(userNameLabelValue);
+		GridBagConstraints c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = gridy;
+		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(12, 12, 0, 0);
+		centerPane.add(userNameLabel, c);
 
-        //username example
-        if(GuiManager.isThisSipphoneAnywhere)
-        {
+		// user name text
+		c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = gridy++;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx = 1.0;
+		c.insets = new Insets(12, 7, 0, 11);
+		centerPane.add(userNameTextField, c);
 
-            String egValue = Utils.getProperty("net.java.sip.communicator.sipphone.USER_NAME_EXAMPLE");
+		// username example
+		if (GuiManager.isThisSipphoneAnywhere) {
 
-            if(egValue == null)
-                egValue = "Example: 1-747-555-1212";
+			String egValue = Utils
+					.getProperty("net.java.sip.communicator.sipphone.USER_NAME_EXAMPLE");
 
-            JLabel userNameExampleLabel = new JLabel();
+			if (egValue == null)
+				egValue = "Example: 1-747-555-1212";
 
-            userNameExampleLabel.setText(egValue);
-            c = new GridBagConstraints();
-            c.gridx=0;
-            c.gridy=gridy++;
-            c.anchor=GridBagConstraints.WEST;
-            c.fill=GridBagConstraints.HORIZONTAL;
-            c.insets=new Insets(12,12,0,0);
-            centerPane.add(userNameExampleLabel, c);
+			JLabel userNameExampleLabel = new JLabel();
 
-        }
+			userNameExampleLabel.setText(egValue);
+			c = new GridBagConstraints();
+			c.gridx = 0;
+			c.gridy = gridy++;
+			c.anchor = GridBagConstraints.WEST;
+			c.fill = GridBagConstraints.HORIZONTAL;
+			c.insets = new Insets(12, 12, 0, 0);
+			centerPane.add(userNameExampleLabel, c);
 
-        passwordTextField = new JPasswordField(); //needed below
+		}
 
-        // password label
-        JLabel passwordLabel = new JLabel();
-        passwordLabel.setDisplayedMnemonic('P');
-        passwordLabel.setLabelFor(passwordTextField);
-        String pLabelStr = PropertiesDepot.getProperty("net.java.sip.communicator.gui.PASSWORD_LABEL");
-        passwordLabel.setText(pLabelStr==null?pLabelStr: "Password");
-        c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = gridy;
-        c.anchor = GridBagConstraints.WEST;
-        c.insets = new Insets(11, 12, 0, 0);
+		passwordTextField = new JPasswordField(); // needed below
 
-        centerPane.add(
-            passwordLabel, c);
+		// password label
+		JLabel passwordLabel = new JLabel();
+		passwordLabel.setDisplayedMnemonic('P');
+		passwordLabel.setLabelFor(passwordTextField);
+		String pLabelStr = PropertiesDepot
+				.getProperty("net.java.sip.communicator.gui.PASSWORD_LABEL");
+		passwordLabel.setText(pLabelStr == null ? pLabelStr : "Password");
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = gridy;
+		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(11, 12, 0, 0);
 
-        // password text
-        passwordTextField.setEchoChar('\u2022');
-        c = new GridBagConstraints();
-        c.gridx = 1;
-        c.gridy = gridy++;
-        c.fill = GridBagConstraints.HORIZONTAL;
-        c.weightx = 1.0;
-        c.insets = new Insets(11, 7, 0, 11);
-        centerPane.add(passwordTextField, c);
+		centerPane.add(passwordLabel, c);
 
-        //Set a relevant realm value
-        //Bug report by Steven Lass (sltemp at comcast.net)
-        //JLabel realmValueLabel = new JLabel("SipPhone.com"); // needed below
+		// password text
+		passwordTextField.setEchoChar('\u2022');
+		c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = gridy++;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx = 1.0;
+		c.insets = new Insets(11, 7, 0, 11);
+		centerPane.add(passwordTextField, c);
 
+		// Set a relevant realm value
+		// Bug report by Steven Lass (sltemp at comcast.net)
+		// JLabel realmValueLabel = new JLabel("SipPhone.com"); // needed below
 
-        // realm label
+		// realm label
 
-        JLabel realmLabel = new JLabel();
-        realmLabel.setDisplayedMnemonic('R');
-        realmLabel.setLabelFor(realmValueLabel);
-        realmLabel.setText("Realm");
-        realmValueLabel = new JLabel();
+		JLabel realmLabel = new JLabel();
+		realmLabel.setDisplayedMnemonic('R');
+		realmLabel.setLabelFor(realmValueLabel);
+		realmLabel.setText("Realm");
+		realmValueLabel = new JLabel();
 
-        if (!GuiManager.isThisSipphoneAnywhere) {
-            c = new GridBagConstraints();
-            c.gridx = 0;
-            c.gridy = gridy;
-            c.anchor = GridBagConstraints.WEST;
-            c.insets = new Insets(11, 12, 0, 0);
-            centerPane.add(realmLabel, c);
-            c = new GridBagConstraints();
-            c.gridx = 1;
-            c.gridy = gridy++;
-            c.fill = GridBagConstraints.HORIZONTAL;
-            c.insets = new Insets(11, 7, 0, 11);
-            centerPane.add(realmValueLabel, c);
-        }
+		if (!GuiManager.isThisSipphoneAnywhere) {
+			c = new GridBagConstraints();
+			c.gridx = 0;
+			c.gridy = gridy;
+			c.anchor = GridBagConstraints.WEST;
+			c.insets = new Insets(11, 12, 0, 0);
+			centerPane.add(realmLabel, c);
+			c = new GridBagConstraints();
+			c.gridx = 1;
+			c.gridy = gridy++;
+			c.fill = GridBagConstraints.HORIZONTAL;
+			c.insets = new Insets(11, 7, 0, 11);
+			centerPane.add(realmValueLabel, c);
+		}
 
-        // Buttons along bottom of window
-        JPanel buttonPanel = new JPanel();
-        buttonPanel.setLayout(new BoxLayout(buttonPanel, 0));
-        loginButton = new JButton();
-        loginButton.setText("Login");
-        loginButton.setActionCommand(CMD_LOGIN);
-        loginButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent event)
-            {
-                dialogDone(event);
-            }
-        });
-        buttonPanel.add(loginButton);
+		// Buttons along bottom of window
+		JPanel buttonPanel = new JPanel();
+		buttonPanel.setLayout(new BoxLayout(buttonPanel, 0));
+		loginButton = new JButton();
+		loginButton.setText("Login");
+		loginButton.setActionCommand(CMD_LOGIN);
+		loginButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				dialogDone(event);
+			}
+		});
+		buttonPanel.add(loginButton);
 
-        // space
-        buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
+		// space
+		buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
 
-        cancelButton = new JButton();
-        cancelButton.setText("Cancel");
-        cancelButton.setActionCommand(CMD_CANCEL);
-        cancelButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent event)
-            {
-                dialogDone(event);
-            }
-        });
-        buttonPanel.add(cancelButton);
+		cancelButton = new JButton();
+		cancelButton.setText("Cancel");
+		cancelButton.setActionCommand(CMD_CANCEL);
+		cancelButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				dialogDone(event);
+			}
+		});
+		buttonPanel.add(cancelButton);
 
-        buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
+		buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
 
-        helpButton = new JButton();
-        helpButton.setMnemonic('H');
-        helpButton.setText("Help");
-        helpButton.setActionCommand(CMD_HELP);
-        helpButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent event)
-            {
-                dialogDone(event);
-            }
-        });
-        //buttonPanel.add(helpButton);
+		helpButton = new JButton();
+		helpButton.setMnemonic('H');
+		helpButton.setText("Help");
+		helpButton.setActionCommand(CMD_HELP);
+		helpButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				dialogDone(event);
+			}
+		});
+		// buttonPanel.add(helpButton);
 
-        // register
-        buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
+		// register
+		buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
 
-        registerButton = new JButton();
-        registerButton.setText("Register");
-        registerButton.setActionCommand(CMD_REGISTER);
-        registerButton.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent event)
-            {
-                dialogDone(event);
-            }
-        });
-        buttonPanel.add(registerButton);
+		registerButton = new JButton();
+		registerButton.setText("Register");
+		registerButton.setActionCommand(CMD_REGISTER);
+		registerButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				dialogDone(event);
+			}
+		});
+		buttonPanel.add(registerButton);
 
-        c = new GridBagConstraints();
-        c.gridx = 0;
-        c.gridy = 3;
-        c.gridwidth = 2;
-        c.insets = new Insets(11, 12, 11, 11);
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = 3;
+		c.gridwidth = 2;
+		c.insets = new Insets(11, 12, 11, 11);
 
-        centerPane.add(buttonPanel, c);
+		centerPane.add(buttonPanel, c);
 
-        contents.add(centerPane, BorderLayout.CENTER);
-        getRootPane().setDefaultButton(loginButton);
-        equalizeButtonSizes();
+		contents.add(centerPane, BorderLayout.CENTER);
+		getRootPane().setDefaultButton(loginButton);
+		equalizeButtonSizes();
 
-        setFocusTraversalPolicy(new FocusTraversalPol());
+		setFocusTraversalPolicy(new FocusTraversalPol());
 
-    } // initComponents()
+	} // initComponents()
 
-    /**
-     * Sets the buttons along the bottom of the dialog to be the
-     * same size. This is done dynamically by setting each button's
-     * preferred and maximum sizes after the buttons are created.
-     * This way, the layout automatically adjusts to the locale-
-     * specific strings.
-     */
-    private void equalizeButtonSizes()
-    {
+	/**
+	 * Sets the buttons along the bottom of the dialog to be the same size. This
+	 * is done dynamically by setting each button's preferred and maximum sizes
+	 * after the buttons are created. This way, the layout automatically adjusts
+	 * to the locale- specific strings.
+	 */
+	private void equalizeButtonSizes() {
 
-        JButton[] buttons = new JButton[] {
-            loginButton, cancelButton
-        };
+		JButton[] buttons = new JButton[] { loginButton, cancelButton };
 
-        String[] labels = new String[buttons.length];
-        for (int i = 0; i < labels.length; i++) {
-            labels[i] = buttons[i].getText();
-        }
+		String[] labels = new String[buttons.length];
+		for (int i = 0; i < labels.length; i++) {
+			labels[i] = buttons[i].getText();
+		}
 
-        // Get the largest width and height
-        int i = 0;
-        Dimension maxSize = new Dimension(0, 0);
-        Rectangle2D textBounds = null;
-        Dimension textSize = null;
-        FontMetrics metrics = buttons[0].getFontMetrics(buttons[0].getFont());
-        Graphics g = getGraphics();
-        for (i = 0; i < labels.length; ++i) {
-            textBounds = metrics.getStringBounds(labels[i], g);
-            maxSize.width =
-                Math.max(maxSize.width, (int) textBounds.getWidth());
-            maxSize.height =
-                Math.max(maxSize.height, (int) textBounds.getHeight());
-        }
+		// Get the largest width and height
+		int i = 0;
+		Dimension maxSize = new Dimension(0, 0);
+		Rectangle2D textBounds = null;
+		Dimension textSize = null;
+		FontMetrics metrics = buttons[0].getFontMetrics(buttons[0].getFont());
+		Graphics g = getGraphics();
+		for (i = 0; i < labels.length; ++i) {
+			textBounds = metrics.getStringBounds(labels[i], g);
+			maxSize.width = Math
+					.max(maxSize.width, (int) textBounds.getWidth());
+			maxSize.height = Math.max(maxSize.height,
+					(int) textBounds.getHeight());
+		}
 
-        Insets insets =
-            buttons[0].getBorder().getBorderInsets(buttons[0]);
-        maxSize.width += insets.left + insets.right;
-        maxSize.height += insets.top + insets.bottom;
+		Insets insets = buttons[0].getBorder().getBorderInsets(buttons[0]);
+		maxSize.width += insets.left + insets.right;
+		maxSize.height += insets.top + insets.bottom;
 
-        // reset preferred and maximum size since BoxLayout takes both
-        // into account
-        for (i = 0; i < buttons.length; ++i) {
-            buttons[i].setPreferredSize( (Dimension) maxSize.clone());
-            buttons[i].setMaximumSize( (Dimension) maxSize.clone());
-        }
-    } // equalizeButtonSizes()
+		// reset preferred and maximum size since BoxLayout takes both
+		// into account
+		for (i = 0; i < buttons.length; ++i) {
+			buttons[i].setPreferredSize((Dimension) maxSize.clone());
+			buttons[i].setMaximumSize((Dimension) maxSize.clone());
+		}
+	} // equalizeButtonSizes()
 
-    /**
-     * The user has selected an option. Here we close and dispose the dialog.
-     * If actionCommand is an ActionEvent, getCommandString() is called,
-     * otherwise toString() is used to get the action command.
-     *
-     * @param actionCommand may be null
-     */
-    private void dialogDone(Object actionCommand)
-    {
-        String cmd = null;
-        if (actionCommand != null) {
-            if (actionCommand instanceof ActionEvent) {
-                cmd = ( (ActionEvent) actionCommand).getActionCommand();
-            }
-            else {
-                cmd = actionCommand.toString();
-            }
-        }
-        if (cmd == null) {
-            // do nothing
-        }
-        else if (cmd.equals(CMD_CANCEL)) {
-            userName = null;
-            password = null;
-        }
-        else if (cmd.equals(CMD_HELP)) {
-            System.out.println("your help code here...");
-        }
-        else if (cmd.equals(CMD_LOGIN)) {
-            userName = userNameTextField.getText();
-            password = passwordTextField.getPassword();
-        }
-        setVisible(false);
-        dispose();
-    } // dialogDone()
+	/**
+	 * The user has selected an option. Here we close and dispose the dialog. If
+	 * actionCommand is an ActionEvent, getCommandString() is called, otherwise
+	 * toString() is used to get the action command.
+	 * 
+	 * @param actionCommand
+	 *            may be null
+	 */
+	private void dialogDone(Object actionCommand) {
+		String cmd = null;
+		if (actionCommand != null) {
+			if (actionCommand instanceof ActionEvent) {
+				cmd = ((ActionEvent) actionCommand).getActionCommand();
+			} else {
+				cmd = actionCommand.toString();
+			}
+		}
+		if (cmd == null) {
+			// do nothing
+		} else if (cmd.equals(CMD_CANCEL)) {
+			userName = null;
+			password = null;
+		} else if (cmd.equals(CMD_HELP)) {
+			System.out.println("your help code here...");
+		} else if (cmd.equals(CMD_LOGIN)) {
+			userName = userNameTextField.getText();
+			password = passwordTextField.getPassword();
+		} else if (cmd.equals(CMD_REGISTER)) {
+			System.out.println("register");
+		}
+		setVisible(false);
+		dispose();
+	} // dialogDone()
 
-    /**
-     * This main() is provided for debugging purposes, to display a
-     * sample dialog.
-     */
-    public static void main(String args[])
-    {
-        JFrame frame = new JFrame()
-        {
-            public Dimension getPreferredSize()
-            {
-                return new Dimension(200, 100);
-            }
-        };
-        frame.setTitle("Debugging frame");
-        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(false);
+	/**
+	 * This main() is provided for debugging purposes, to display a sample
+	 * dialog.
+	 */
+	public static void main(String args[]) {
+		JFrame frame = new JFrame() {
+			public Dimension getPreferredSize() {
+				return new Dimension(200, 100);
+			}
+		};
+		frame.setTitle("Debugging frame");
+		frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		frame.pack();
+		frame.setVisible(false);
 
-        AuthenticationSplash dialog = new AuthenticationSplash(frame, true);
-        dialog.addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing(WindowEvent event)
-            {
-                System.exit(0);
-            }
+		AuthenticationSplash dialog = new AuthenticationSplash(frame, true);
+		dialog.addWindowListener(new WindowAdapter() {
+			public void windowClosing(WindowEvent event) {
+				System.exit(0);
+			}
 
-            public void windowClosed(WindowEvent event)
-            {
-                System.exit(0);
-            }
-        });
-        dialog.pack();
-        dialog.setVisible(true);
-    } // main()
+			public void windowClosed(WindowEvent event) {
+				System.exit(0);
+			}
+		});
+		dialog.pack();
+		dialog.setVisible(true);
+	} // main()
 
-    private class FocusTraversalPol extends LayoutFocusTraversalPolicy
-    {
-        public Component getDefaultComponent(Container cont)
-        {
-            if(  userNameTextField.getText() == null
-               ||userNameTextField.getText().trim().length() == 0)
-                return super.getFirstComponent(cont);
-            else
-                return passwordTextField;
-        }
-    }
+	private class FocusTraversalPol extends LayoutFocusTraversalPolicy {
+		public Component getDefaultComponent(Container cont) {
+			if (userNameTextField.getText() == null
+					|| userNameTextField.getText().trim().length() == 0)
+				return super.getFirstComponent(cont);
+			else
+				return passwordTextField;
+		}
+	}
 } // class LoginSplash
