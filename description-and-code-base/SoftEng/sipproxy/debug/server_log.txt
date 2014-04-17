@@ -48167,3 +48167,727 @@ Content-Length: 151
 ]]>
 </message>
 
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= 127.0.0.1
+javax.sip.STACK_NAME= nist-proxy
+javax.sip.ROUTER_PATH= gov.nist.sip.proxy.router.ProxyRouter
+javax.sip.OUTBOUND_PROXY= null
+javax.sip.RETRANSMISSION_FILTER= on
+-->
+<description
+ logDescription="nist-proxy"
+ name="127.0.0.1" />
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= 127.0.0.1
+javax.sip.STACK_NAME= nist-proxy
+javax.sip.ROUTER_PATH= gov.nist.sip.proxy.router.ProxyRouter
+javax.sip.OUTBOUND_PROXY= null
+javax.sip.RETRANSMISSION_FILTER= on
+-->
+<description
+ logDescription="nist-proxy"
+ name="127.0.0.1" />
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397672678591" 
+isSender="false" 
+transactionId="z9hg4bk626eb452891f2958f359ac4b4c66dd0e" 
+callId="b8c92f83c130fdc6d71c12a5a913855c@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="102" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b8c92f83c130fdc6d71c12a5a913855c@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:jmaria@127.0.0.1:4000;transport=udp>;tag=736927539
+To: "jmaria" <sip:jmaria@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK626eb452891f2958f359ac4b4c66dd0e
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:4000" 
+to="192.168.1.6:5060" 
+time="1397672678865" 
+isSender="true" 
+transactionId="z9hg4bk626eb452891f2958f359ac4b4c66dd0e" 
+callId="b8c92f83c130fdc6d71c12a5a913855c@192.168.1.6" 
+firstLine="SIP/2.0 200 OK" 
+debugLine="157" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: b8c92f83c130fdc6d71c12a5a913855c@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:jmaria@127.0.0.1:4000;transport=udp>;tag=736927539
+To: "jmaria" <sip:jmaria@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK626eb452891f2958f359ac4b4c66dd0e
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397672679070" 
+isSender="false" 
+transactionId="z9hg4bk626eb452891f2958f359ac4b4c66dd0e" 
+callId="b8c92f83c130fdc6d71c12a5a913855c@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="263" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b8c92f83c130fdc6d71c12a5a913855c@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:jmaria@127.0.0.1:4000;transport=udp>;tag=736927539
+To: "jmaria" <sip:jmaria@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK626eb452891f2958f359ac4b4c66dd0e
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:4000" 
+to="192.168.1.6:5060" 
+time="1397672679492" 
+isSender="true" 
+transactionId="z9hg4bk626eb452891f2958f359ac4b4c66dd0e" 
+callId="b8c92f83c130fdc6d71c12a5a913855c@192.168.1.6" 
+firstLine="SIP/2.0 200 OK" 
+debugLine="322" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: b8c92f83c130fdc6d71c12a5a913855c@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:jmaria@127.0.0.1:4000;transport=udp>;tag=736927539
+To: "jmaria" <sip:jmaria@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK626eb452891f2958f359ac4b4c66dd0e
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= 127.0.0.1
+javax.sip.STACK_NAME= nist-proxy
+javax.sip.ROUTER_PATH= gov.nist.sip.proxy.router.ProxyRouter
+javax.sip.OUTBOUND_PROXY= null
+javax.sip.RETRANSMISSION_FILTER= on
+-->
+<description
+ logDescription="nist-proxy"
+ name="127.0.0.1" />
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397682682092" 
+isSender="false" 
+transactionId="z9hg4bkc1d437ea19036b1ec9a682ab8981c820" 
+callId="e98c615dc16d306c4b17c73c65415eb5@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="94" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: e98c615dc16d306c4b17c73c65415eb5@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1270464539
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKc1d437ea19036b1ec9a682ab8981c820
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:4000" 
+to="192.168.1.6:5060" 
+time="1397682682384" 
+isSender="true" 
+transactionId="z9hg4bkc1d437ea19036b1ec9a682ab8981c820" 
+callId="e98c615dc16d306c4b17c73c65415eb5@192.168.1.6" 
+firstLine="SIP/2.0 200 OK" 
+debugLine="157" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: e98c615dc16d306c4b17c73c65415eb5@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1270464539
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKc1d437ea19036b1ec9a682ab8981c820
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= 127.0.0.1
+javax.sip.STACK_NAME= nist-proxy
+javax.sip.ROUTER_PATH= gov.nist.sip.proxy.router.ProxyRouter
+javax.sip.OUTBOUND_PROXY= null
+javax.sip.RETRANSMISSION_FILTER= on
+-->
+<description
+ logDescription="nist-proxy"
+ name="127.0.0.1" />
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= 127.0.0.1
+javax.sip.STACK_NAME= nist-proxy
+javax.sip.ROUTER_PATH= gov.nist.sip.proxy.router.ProxyRouter
+javax.sip.OUTBOUND_PROXY= null
+javax.sip.RETRANSMISSION_FILTER= on
+-->
+<description
+ logDescription="nist-proxy"
+ name="127.0.0.1" />
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397683380247" 
+isSender="false" 
+transactionId="z9hg4bk5631d5209a90131b3f01f828a8fef311" 
+callId="98098821c5c3bc14aad66d49353f5c5e@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="102" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 98098821c5c3bc14aad66d49353f5c5e@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1938777375
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5631d5209a90131b3f01f828a8fef311
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:4000" 
+to="192.168.1.6:5060" 
+time="1397683380455" 
+isSender="true" 
+transactionId="z9hg4bk5631d5209a90131b3f01f828a8fef311" 
+callId="98098821c5c3bc14aad66d49353f5c5e@192.168.1.6" 
+firstLine="SIP/2.0 200 OK" 
+debugLine="157" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: 98098821c5c3bc14aad66d49353f5c5e@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1938777375
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5631d5209a90131b3f01f828a8fef311
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397683490573" 
+isSender="false" 
+transactionId="z9hg4bkfe53f9a2e518e4d4d80200b6aeab3fe4" 
+callId="98098821c5c3bc14aad66d49353f5c5e@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="263" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 98098821c5c3bc14aad66d49353f5c5e@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1938777375
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKfe53f9a2e518e4d4d80200b6aeab3fe4
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:4000" 
+to="192.168.1.6:5060" 
+time="1397683490603" 
+isSender="true" 
+transactionId="z9hg4bkfe53f9a2e518e4d4d80200b6aeab3fe4" 
+callId="98098821c5c3bc14aad66d49353f5c5e@192.168.1.6" 
+firstLine="SIP/2.0 200 OK" 
+debugLine="322" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: 98098821c5c3bc14aad66d49353f5c5e@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1938777375
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKfe53f9a2e518e4d4d80200b6aeab3fe4
+Max-Forwards: 70
+Expires: 0
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= 127.0.0.1
+javax.sip.STACK_NAME= nist-proxy
+javax.sip.ROUTER_PATH= gov.nist.sip.proxy.router.ProxyRouter
+javax.sip.OUTBOUND_PROXY= null
+javax.sip.RETRANSMISSION_FILTER= on
+-->
+<description
+ logDescription="nist-proxy"
+ name="127.0.0.1" />
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397683549714" 
+isSender="false" 
+transactionId="z9hg4bk5395618e49b4e912346cd0c6db3be4e5" 
+callId="dfb7911c077d819047821e38c41e710f@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="102" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: dfb7911c077d819047821e38c41e710f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1105339557
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5395618e49b4e912346cd0c6db3be4e5
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:4000" 
+to="192.168.1.6:5060" 
+time="1397683549863" 
+isSender="true" 
+transactionId="z9hg4bk5395618e49b4e912346cd0c6db3be4e5" 
+callId="dfb7911c077d819047821e38c41e710f@192.168.1.6" 
+firstLine="SIP/2.0 200 OK" 
+debugLine="157" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: dfb7911c077d819047821e38c41e710f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1105339557
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5395618e49b4e912346cd0c6db3be4e5
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397683664278" 
+isSender="false" 
+transactionId="z9hg4bk4d49d99d8cc15f6879919ecd114b3328" 
+callId="dfb7911c077d819047821e38c41e710f@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="263" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: dfb7911c077d819047821e38c41e710f@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1105339557
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK4d49d99d8cc15f6879919ecd114b3328
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:4000" 
+to="192.168.1.6:5060" 
+time="1397683664367" 
+isSender="true" 
+transactionId="z9hg4bk4d49d99d8cc15f6879919ecd114b3328" 
+callId="dfb7911c077d819047821e38c41e710f@192.168.1.6" 
+firstLine="SIP/2.0 200 OK" 
+debugLine="322" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: dfb7911c077d819047821e38c41e710f@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1105339557
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK4d49d99d8cc15f6879919ecd114b3328
+Max-Forwards: 70
+Expires: 0
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397683734426" 
+isSender="false" 
+transactionId="z9hg4bke14d8c4fc66efb0716bf9f0a811fab28" 
+callId="7f4d7b2c586d6e0250bf5ea2306acb32@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="428" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 7f4d7b2c586d6e0250bf5ea2306acb32@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1708387949
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKe14d8c4fc66efb0716bf9f0a811fab28
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="127.0.0.1:4000" 
+to="192.168.1.6:5060" 
+time="1397683734446" 
+isSender="true" 
+transactionId="z9hg4bke14d8c4fc66efb0716bf9f0a811fab28" 
+callId="7f4d7b2c586d6e0250bf5ea2306acb32@192.168.1.6" 
+firstLine="SIP/2.0 200 OK" 
+debugLine="487" 
+>
+<![CDATA[SIP/2.0 200 OK
+Call-ID: 7f4d7b2c586d6e0250bf5ea2306acb32@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1708387949
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKe14d8c4fc66efb0716bf9f0a811fab28
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+]]>
+</message>
+
+<!-- Use the  Trace Viewer in src/tools/tracesviewer to view this  trace  
+Here are the stack configuration properties 
+javax.sip.IP_ADDRESS= 127.0.0.1
+javax.sip.STACK_NAME= nist-proxy
+javax.sip.ROUTER_PATH= gov.nist.sip.proxy.router.ProxyRouter
+javax.sip.OUTBOUND_PROXY= null
+javax.sip.RETRANSMISSION_FILTER= on
+-->
+<description
+ logDescription="nist-proxy"
+ name="127.0.0.1" />
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684889749" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="102" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684890248" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="203" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684891249" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="304" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684893252" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="405" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684897258" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="506" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684901266" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="607" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684905271" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="708" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684909276" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="809" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684913281" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="910" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684917288" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="1011" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+
+<message
+from="192.168.1.6:5060" 
+to="127.0.0.1:4000" 
+time="1397684921293" 
+isSender="false" 
+transactionId="z9hg4bk12beb00c5c854c758b20e94281f41dd4" 
+callId="6aefd5523839b0c144a61648d1b8fab6@192.168.1.6" 
+firstLine="REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0" 
+debugLine="1112" 
+>
+<![CDATA[REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 6aefd5523839b0c144a61648d1b8fab6@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1370646455
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK12beb00c5c854c758b20e94281f41dd4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+]]>
+</message>
+

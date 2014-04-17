@@ -255,9 +255,9 @@ implements RegistrarAccess {
     public
     synchronized void processRegister(Request request, SipProvider sipProvider,
     ServerTransaction serverTransaction ) {
-        try{
+    	try{
             MessageFactory messageFactory=proxy.getMessageFactory();
-            
+             
             String key=getKey(request);
 
             // Add the key if it is a new user:
