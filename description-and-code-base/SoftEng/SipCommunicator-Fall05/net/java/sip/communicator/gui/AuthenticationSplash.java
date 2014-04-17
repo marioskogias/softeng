@@ -76,6 +76,7 @@ import net.java.sip.communicator.common.*;
 public class AuthenticationSplash extends JDialog {
 	String userName = null;
 	char[] password = null;
+	boolean shouldRegister = false;
 	JTextField userNameTextField = null;
 	JLabel realmValueLabel = null;
 	JPasswordField passwordTextField = null;
@@ -459,7 +460,7 @@ public class AuthenticationSplash extends JDialog {
 			userName = userNameTextField.getText();
 			password = passwordTextField.getPassword();
 		} else if (cmd.equals(CMD_REGISTER)) {
-			System.out.println("register");
+			shouldRegister = true;
 		}
 		setVisible(false);
 		dispose();

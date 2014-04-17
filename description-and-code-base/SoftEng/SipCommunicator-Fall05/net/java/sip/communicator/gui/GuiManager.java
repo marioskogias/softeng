@@ -687,6 +687,20 @@ public class GuiManager
         return authenticationSplash.password;
     }
 
+    /*
+     * Check if register button is checked
+     */
+    public boolean shouldRegister() {
+    	return authenticationSplash.shouldRegister;
+    }
+    
+    /*
+     * Show register panel
+     */
+    public void requestRegistration() {
+    
+    }
+    
     /**
      * Displays a SubscriptionAuthorizationDialog that demands the user to
      * authorize the specified subscription request.
