@@ -119,6 +119,7 @@ public class GuiManager
     VoiceMailAction voiceMailAction = null;
     MySipphoneAction mySipphoneAction = null;
     private AuthenticationSplash authenticationSplash = null;
+    private RegistrationSplash registrationSplash = null;
 
     static boolean isThisSipphoneAnywhere = false;
 
@@ -698,6 +699,11 @@ public class GuiManager
      * Show register panel
      */
     public void requestRegistration() {
+        if (registrationSplash != null)
+            registrationSplash.dispose();
+        registrationSplash = new RegistrationSplash(phoneFrame, true);
+        
+        registrationSplash.show();
     
     }
     
