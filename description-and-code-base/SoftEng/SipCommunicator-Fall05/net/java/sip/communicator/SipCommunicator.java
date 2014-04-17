@@ -727,7 +727,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 					defaultValues.getUserName(), defaultValues.getPassword());
 
 			if (guiManager.shouldRegister())
-				guiManager.requestRegistration();
+				return obtainCredentialsAndRegister();
 			
 			UserCredentials credentials = new UserCredentials();
 
@@ -745,7 +745,23 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 	 * Implements obtainCredentialsAndRegister from SecurityAuthority
 	 */
 	public UserCredentials obtainCredentialsAndRegister() {
-		return null;
+		try {
+			console.logEntry();
+
+			guiManager.requestRegistration();
+			
+			UserCredentials credentials = new UserCredentials();
+
+			credentials.setUserName(guiManager.getAuthenticationUserName());
+			credentials.setPassword(guiManager.getAuthenticationPassword());
+
+			//Register with the db manager here
+			
+			return credentials;
+		} finally {
+			console.logExit();
+		}
+	
 	}
 
 	// ============================== PROPERTIES
