@@ -810,6 +810,12 @@ public class SipCommunicator
         }
     }
 
+    /**
+     * Implements obtainCredentialsAndRegister from SecurityAuthority
+     */
+    public UserCredentials obtainCredentialsAndRegister() {
+    	return null;
+    }
 //============================== PROPERTIES ==================================
     protected File getPropertiesFile()
     {
