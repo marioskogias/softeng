@@ -640,6 +640,13 @@ public class GuiManager implements GuiCallback {
 				: authenticationSplash.password;
 	}
 
+	public String getEmail() {
+		return registrationSplash.mail;
+	}
+	
+	public String getCreditCard() {
+		return registrationSplash.creditCardNo;
+	}
 	/*
 	 * Check if register button is checked
 	 */
