@@ -6,19 +6,24 @@
 
 package gov.nist.sip.proxy.registrar;
 
+import gov.nist.sip.db.RegisterDB;
 import gov.nist.sip.proxy.*;
+
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.rmi.*;
 import java.rmi.server.*;
+
 import javax.sip.*;
 import javax.sip.message.*;
 import javax.sip.header.*;
 import javax.sip.address.*;
+
 import java.util.*;
 import java.net.URLEncoder;
+
 import gov.nist.sip.proxy.presenceserver.*;
 import gov.nist.sip.proxy.gui.*;
 

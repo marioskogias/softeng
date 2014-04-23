@@ -48402,3 +48402,1422 @@ Proxy stopped
 
 *****************************************************
 
+DEBUG properties set!
+The proxy is responsible for the domain:127.0.0.1
+Here is one domain to take care of:there.com
+Here is one domain to take care of:pingtel.com
+Here is one domain to take care of:ubi.com
+Here is one domain to take care of:hotmail.com
+Here is one domain to take care of:nist.gov
+Here is one domain to take care of:nitrogen.epact.se
+Here is one domain to take care of:127.0.0.1
+DEBUG, ProxyRouter, the default route is: null
+We don't export the registrations because RMI is disabled.
+Parsing the XML registrations file: ./gov/nist/sip/proxy/configuration/registrations.xml
+Parsing XML registrations
+XML Registrations parsed successfully!!!
+Registrar, parseXMLregistrations(), Uploading of 2 registrations
+RegistrationsTable, addRegistration(), registration  added for the key: sip:mranga@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:mranga@nist.gov
+   DisplayName=Ranga 
+   Contacts=[]
+RegistrationsTable, addRegistration(), registration  added for the key: sip:deruelle@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:deruelle@nist.gov
+   DisplayName=Deruelle 
+   Contacts=[]
+Registrar, registerToProxies(), we have to register to 0 proxies
+
+*****************************************************
+
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK1c22c4db258c4ef583498a3f4cbdd8d8
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios@127.0.0.1:4000" : not registered
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:3600
+RegistrationsTable, startTimer(), timer started  for the contact: sip:192.168.1.6:5060 , expiresTime:3600
+RegistrationsTable, addRegistration(), registration  added for the key: sip:marios@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios@127.0.0.1:4000"
+- contacts: 
+  contact 1 : Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, processRegister(),   we have to check if we have some SUBSCRIBE stored.
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK1c22c4db258c4ef583498a3f4cbdd8d8
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK1c22c4db258c4ef583498a3f4cbdd8d8
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK1c22c4db258c4ef583498a3f4cbdd8d8
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios@127.0.0.1:4000" : registered
+RegistrationsTable, updateRegistration(), registration updated for the key: sip:marios@127.0.0.1:4000
+Contact to add:sip:192.168.1.6:5060 ?
+Contact in the list:sip:192.168.1.6:5060
+Contact already in the list
+DEBUG, Registration, updateContactHeader(): The contact: sip:192.168.1.6:5060 has been updated for the key: sip:marios@127.0.0.1:4000
+RegistrationsTable, startTimer(), An old timer has  been stopped for the contact: sip:192.168.1.6:5060
+RegistrationsTable, startTimer(), timer started  for the contact: sip:192.168.1.6:5060 , expiresTime:3600
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios@127.0.0.1:4000"
+- contacts: 
+  contact 1 : Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:3600
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK1c22c4db258c4ef583498a3f4cbdd8d8
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK1c22c4db258c4ef583498a3f4cbdd8d8
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK1c22c4db258c4ef583498a3f4cbdd8d8
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios@127.0.0.1:4000" : registered
+RegistrationsTable, updateRegistration(), registration updated for the key: sip:marios@127.0.0.1:4000
+Contact to add:sip:192.168.1.6:5060 ?
+Contact in the list:sip:192.168.1.6:5060
+Contact already in the list
+DEBUG, Registration, updateContactHeader(): The contact: sip:192.168.1.6:5060 has been updated for the key: sip:marios@127.0.0.1:4000
+RegistrationsTable, startTimer(), An old timer has  been stopped for the contact: sip:192.168.1.6:5060
+RegistrationsTable, startTimer(), timer started  for the contact: sip:192.168.1.6:5060 , expiresTime:3600
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios@127.0.0.1:4000"
+- contacts: 
+  contact 1 : Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:3600
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK1c22c4db258c4ef583498a3f4cbdd8d8
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK1c22c4db258c4ef583498a3f4cbdd8d8
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKb6c5fda39573ea68819d40354522b6fa
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios@127.0.0.1:4000" : registered
+RegistrationsTable, updateRegistration(), registration updated for the key: sip:marios@127.0.0.1:4000
+RegistrationsTable, removeContact(),  contact removed for the key: sip:marios@127.0.0.1:4000
+DEBUG, Registration, removeContactHeader(): The contact: sip:192.168.1.6:5060 has been removed for the key: sip:marios@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios@127.0.0.1:4000"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+RegistrationsTable, removeContact(), the registration: sip:marios@127.0.0.1:4000 does not contain any contacts, we remove it
+RegistrationsTable, removeRegistration(),  registration removed for the key: sip:marios@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:0
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKb6c5fda39573ea68819d40354522b6fa
+Max-Forwards: 70
+Expires: 0
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: b3398fc70446840f8325f7397798880f@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1070981806
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKb6c5fda39573ea68819d40354522b6fa
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios@127.0.0.1:4000
+Proxy Clean up
+
+*****************************************************
+
+Stopping the proxy
+Proxy stopped
+
+*****************************************************
+
+DEBUG properties set!
+The proxy is responsible for the domain:127.0.0.1
+Here is one domain to take care of:there.com
+Here is one domain to take care of:pingtel.com
+Here is one domain to take care of:ubi.com
+Here is one domain to take care of:hotmail.com
+Here is one domain to take care of:nist.gov
+Here is one domain to take care of:nitrogen.epact.se
+Here is one domain to take care of:127.0.0.1
+DEBUG, ProxyRouter, the default route is: null
+We don't export the registrations because RMI is disabled.
+Parsing the XML registrations file: ./gov/nist/sip/proxy/configuration/registrations.xml
+Parsing XML registrations
+XML Registrations parsed successfully!!!
+Registrar, parseXMLregistrations(), Uploading of 2 registrations
+RegistrationsTable, addRegistration(), registration  added for the key: sip:mranga@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:mranga@nist.gov
+   DisplayName=Ranga 
+   Contacts=[]
+RegistrationsTable, addRegistration(), registration  added for the key: sip:deruelle@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:deruelle@nist.gov
+   DisplayName=Deruelle 
+   Contacts=[]
+Registrar, registerToProxies(), we have to register to 0 proxies
+
+*****************************************************
+
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 691b4c0ec56ae9a028efbd03e821d42c@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=360203988
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK9b4f2ee68e7d2f13e0296f83761e8cce
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 691b4c0ec56ae9a028efbd03e821d42c@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=360203988
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK9b4f2ee68e7d2f13e0296f83761e8cce
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+DEBUG properties set!
+The proxy is responsible for the domain:127.0.0.1
+Here is one domain to take care of:there.com
+Here is one domain to take care of:pingtel.com
+Here is one domain to take care of:ubi.com
+Here is one domain to take care of:hotmail.com
+Here is one domain to take care of:nist.gov
+Here is one domain to take care of:nitrogen.epact.se
+Here is one domain to take care of:127.0.0.1
+DEBUG, ProxyRouter, the default route is: null
+We don't export the registrations because RMI is disabled.
+Parsing the XML registrations file: ./gov/nist/sip/proxy/configuration/registrations.xml
+Parsing XML registrations
+XML Registrations parsed successfully!!!
+Registrar, parseXMLregistrations(), Uploading of 2 registrations
+RegistrationsTable, addRegistration(), registration  added for the key: sip:mranga@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:mranga@nist.gov
+   DisplayName=Ranga 
+   Contacts=[]
+RegistrationsTable, addRegistration(), registration  added for the key: sip:deruelle@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:deruelle@nist.gov
+   DisplayName=Deruelle 
+   Contacts=[]
+Registrar, registerToProxies(), we have to register to 0 proxies
+
+*****************************************************
+
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: f7c8359d6d5f92836cd072603271810c@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=472705529
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK21febd0e86a107cd3d43c35d0383e016
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: f7c8359d6d5f92836cd072603271810c@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=472705529
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK21febd0e86a107cd3d43c35d0383e016
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+DEBUG properties set!
+The proxy is responsible for the domain:127.0.0.1
+Here is one domain to take care of:there.com
+Here is one domain to take care of:pingtel.com
+Here is one domain to take care of:ubi.com
+Here is one domain to take care of:hotmail.com
+Here is one domain to take care of:nist.gov
+Here is one domain to take care of:nitrogen.epact.se
+Here is one domain to take care of:127.0.0.1
+DEBUG, ProxyRouter, the default route is: null
+We don't export the registrations because RMI is disabled.
+Parsing the XML registrations file: ./gov/nist/sip/proxy/configuration/registrations.xml
+Parsing XML registrations
+XML Registrations parsed successfully!!!
+Registrar, parseXMLregistrations(), Uploading of 2 registrations
+RegistrationsTable, addRegistration(), registration  added for the key: sip:mranga@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:mranga@nist.gov
+   DisplayName=Ranga 
+   Contacts=[]
+RegistrationsTable, addRegistration(), registration  added for the key: sip:deruelle@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:deruelle@nist.gov
+   DisplayName=Deruelle 
+   Contacts=[]
+Registrar, registerToProxies(), we have to register to 0 proxies
+
+*****************************************************
+
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: a70f4afb4ec6762c7459d828ea5c7d69@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=1906395790
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKf712bb23cd5405487c083b864d5c41d4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: a70f4afb4ec6762c7459d828ea5c7d69@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=1906395790
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKf712bb23cd5405487c083b864d5c41d4
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+DEBUG properties set!
+The proxy is responsible for the domain:127.0.0.1
+Here is one domain to take care of:there.com
+Here is one domain to take care of:pingtel.com
+Here is one domain to take care of:ubi.com
+Here is one domain to take care of:hotmail.com
+Here is one domain to take care of:nist.gov
+Here is one domain to take care of:nitrogen.epact.se
+Here is one domain to take care of:127.0.0.1
+DEBUG, ProxyRouter, the default route is: null
+We don't export the registrations because RMI is disabled.
+Parsing the XML registrations file: ./gov/nist/sip/proxy/configuration/registrations.xml
+Parsing XML registrations
+XML Registrations parsed successfully!!!
+Registrar, parseXMLregistrations(), Uploading of 2 registrations
+RegistrationsTable, addRegistration(), registration  added for the key: sip:mranga@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:mranga@nist.gov
+   DisplayName=Ranga 
+   Contacts=[]
+RegistrationsTable, addRegistration(), registration  added for the key: sip:deruelle@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:deruelle@nist.gov
+   DisplayName=Deruelle 
+   Contacts=[]
+Registrar, registerToProxies(), we have to register to 0 proxies
+
+*****************************************************
+
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: da214d72df9e5c51e8b63dc9fcb348b9@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=466659434
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKaf21ca65b53c3cf2ecab490f6a638a52
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios123@127.0.0.1:4000" : not registered
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:3600
+RegistrationsTable, startTimer(), timer started  for the contact: sip:192.168.1.6:5060 , expiresTime:3600
+RegistrationsTable, addRegistration(), registration  added for the key: sip:marios123@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios123@127.0.0.1:4000"
+- contacts: 
+  contact 1 : Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, processRegister(),   we have to check if we have some SUBSCRIBE stored.
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: da214d72df9e5c51e8b63dc9fcb348b9@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=466659434
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKaf21ca65b53c3cf2ecab490f6a638a52
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: da214d72df9e5c51e8b63dc9fcb348b9@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=466659434
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKaf21ca65b53c3cf2ecab490f6a638a52
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: da214d72df9e5c51e8b63dc9fcb348b9@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=466659434
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKaf21ca65b53c3cf2ecab490f6a638a52
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios123@127.0.0.1:4000" : registered
+RegistrationsTable, updateRegistration(), registration updated for the key: sip:marios123@127.0.0.1:4000
+Contact to add:sip:192.168.1.6:5060 ?
+Contact in the list:sip:192.168.1.6:5060
+Contact already in the list
+DEBUG, Registration, updateContactHeader(): The contact: sip:192.168.1.6:5060 has been updated for the key: sip:marios123@127.0.0.1:4000
+RegistrationsTable, startTimer(), An old timer has  been stopped for the contact: sip:192.168.1.6:5060
+RegistrationsTable, startTimer(), timer started  for the contact: sip:192.168.1.6:5060 , expiresTime:3600
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios123@127.0.0.1:4000"
+- contacts: 
+  contact 1 : Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:3600
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: da214d72df9e5c51e8b63dc9fcb348b9@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=466659434
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKaf21ca65b53c3cf2ecab490f6a638a52
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: da214d72df9e5c51e8b63dc9fcb348b9@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=466659434
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKaf21ca65b53c3cf2ecab490f6a638a52
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: da214d72df9e5c51e8b63dc9fcb348b9@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=466659434
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK90ddadebf16189bd82f5ffc2b14cd7e2
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios123@127.0.0.1:4000" : registered
+RegistrationsTable, updateRegistration(), registration updated for the key: sip:marios123@127.0.0.1:4000
+RegistrationsTable, removeContact(),  contact removed for the key: sip:marios123@127.0.0.1:4000
+DEBUG, Registration, removeContactHeader(): The contact: sip:192.168.1.6:5060 has been removed for the key: sip:marios123@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios123@127.0.0.1:4000"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+RegistrationsTable, removeContact(), the registration: sip:marios123@127.0.0.1:4000 does not contain any contacts, we remove it
+RegistrationsTable, removeRegistration(),  registration removed for the key: sip:marios123@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:0
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: da214d72df9e5c51e8b63dc9fcb348b9@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=466659434
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK90ddadebf16189bd82f5ffc2b14cd7e2
+Max-Forwards: 70
+Expires: 0
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: da214d72df9e5c51e8b63dc9fcb348b9@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=466659434
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK90ddadebf16189bd82f5ffc2b14cd7e2
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: d2412a50ac4997aafecbe7eb4a76907d@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:ergergerg@127.0.0.1:4000;transport=udp>;tag=1190122095
+To: "jmaria" <sip:ergergerg@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKbff0848eb9faa3940f46cc70b184d1d2
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:ergergerg@127.0.0.1:4000"
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: d2412a50ac4997aafecbe7eb4a76907d@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:ergergerg@127.0.0.1:4000;transport=udp>;tag=1190122095
+To: "jmaria" <sip:ergergerg@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKbff0848eb9faa3940f46cc70b184d1d2
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:ergergerg@127.0.0.1:4000
+DEBUG properties set!
+The proxy is responsible for the domain:127.0.0.1
+Here is one domain to take care of:there.com
+Here is one domain to take care of:pingtel.com
+Here is one domain to take care of:ubi.com
+Here is one domain to take care of:hotmail.com
+Here is one domain to take care of:nist.gov
+Here is one domain to take care of:nitrogen.epact.se
+Here is one domain to take care of:127.0.0.1
+DEBUG, ProxyRouter, the default route is: null
+We don't export the registrations because RMI is disabled.
+Parsing the XML registrations file: ./gov/nist/sip/proxy/configuration/registrations.xml
+Parsing XML registrations
+XML Registrations parsed successfully!!!
+Registrar, parseXMLregistrations(), Uploading of 2 registrations
+RegistrationsTable, addRegistration(), registration  added for the key: sip:mranga@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:mranga@nist.gov
+   DisplayName=Ranga 
+   Contacts=[]
+RegistrationsTable, addRegistration(), registration  added for the key: sip:deruelle@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:deruelle@nist.gov
+   DisplayName=Deruelle 
+   Contacts=[]
+Registrar, registerToProxies(), we have to register to 0 proxies
+
+*****************************************************
+
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 70ae8d9c2c3290d63b451a22ef0e09c5@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1850846567
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK54d8c32518ef706f8d63f209ae1e25ac
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios@127.0.0.1:4000"
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 70ae8d9c2c3290d63b451a22ef0e09c5@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1850846567
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK54d8c32518ef706f8d63f209ae1e25ac
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 70ae8d9c2c3290d63b451a22ef0e09c5@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1850846567
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK54d8c32518ef706f8d63f209ae1e25ac
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios@127.0.0.1:4000"
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 70ae8d9c2c3290d63b451a22ef0e09c5@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>;tag=1850846567
+To: "jmaria" <sip:marios@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK54d8c32518ef706f8d63f209ae1e25ac
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios@127.0.0.1:4000
+DEBUG properties set!
+The proxy is responsible for the domain:127.0.0.1
+Here is one domain to take care of:there.com
+Here is one domain to take care of:pingtel.com
+Here is one domain to take care of:ubi.com
+Here is one domain to take care of:hotmail.com
+Here is one domain to take care of:nist.gov
+Here is one domain to take care of:nitrogen.epact.se
+Here is one domain to take care of:127.0.0.1
+DEBUG, ProxyRouter, the default route is: null
+We don't export the registrations because RMI is disabled.
+Parsing the XML registrations file: ./gov/nist/sip/proxy/configuration/registrations.xml
+Parsing XML registrations
+XML Registrations parsed successfully!!!
+Registrar, parseXMLregistrations(), Uploading of 2 registrations
+RegistrationsTable, addRegistration(), registration  added for the key: sip:mranga@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:mranga@nist.gov
+   DisplayName=Ranga 
+   Contacts=[]
+RegistrationsTable, addRegistration(), registration  added for the key: sip:deruelle@nist.gov
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+PresenceServer.processUploadedRegistration: 
+   Key=sip:deruelle@nist.gov
+   DisplayName=Deruelle 
+   Contacts=[]
+Registrar, registerToProxies(), we have to register to 0 proxies
+
+*****************************************************
+
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: aa3576917c99f6a4f60475a4913d6797@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=846429578
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5262e8f5dbbce5fd964bc98414a0da20
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios123@127.0.0.1:4000" : not registered
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:3600
+RegistrationsTable, startTimer(), timer started  for the contact: sip:192.168.1.6:5060 , expiresTime:3600
+RegistrationsTable, addRegistration(), registration  added for the key: sip:marios123@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios123@127.0.0.1:4000"
+- contacts: 
+  contact 1 : Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, processRegister(),   we have to check if we have some SUBSCRIBE stored.
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: aa3576917c99f6a4f60475a4913d6797@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=846429578
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5262e8f5dbbce5fd964bc98414a0da20
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: aa3576917c99f6a4f60475a4913d6797@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=846429578
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5262e8f5dbbce5fd964bc98414a0da20
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: aa3576917c99f6a4f60475a4913d6797@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=846429578
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5262e8f5dbbce5fd964bc98414a0da20
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios123@127.0.0.1:4000" : registered
+RegistrationsTable, updateRegistration(), registration updated for the key: sip:marios123@127.0.0.1:4000
+Contact to add:sip:192.168.1.6:5060 ?
+Contact in the list:sip:192.168.1.6:5060
+Contact already in the list
+DEBUG, Registration, updateContactHeader(): The contact: sip:192.168.1.6:5060 has been updated for the key: sip:marios123@127.0.0.1:4000
+RegistrationsTable, startTimer(), An old timer has  been stopped for the contact: sip:192.168.1.6:5060
+RegistrationsTable, startTimer(), timer started  for the contact: sip:192.168.1.6:5060 , expiresTime:3600
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios123@127.0.0.1:4000"
+- contacts: 
+  contact 1 : Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:3600
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: aa3576917c99f6a4f60475a4913d6797@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=846429578
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5262e8f5dbbce5fd964bc98414a0da20
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: aa3576917c99f6a4f60475a4913d6797@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=846429578
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5262e8f5dbbce5fd964bc98414a0da20
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: aa3576917c99f6a4f60475a4913d6797@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=846429578
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKa8964730ccd3e0c74af51de30140ccb2
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios123@127.0.0.1:4000" : registered
+RegistrationsTable, updateRegistration(), registration updated for the key: sip:marios123@127.0.0.1:4000
+RegistrationsTable, removeContact(),  contact removed for the key: sip:marios123@127.0.0.1:4000
+DEBUG, Registration, removeContactHeader(): The contact: sip:192.168.1.6:5060 has been removed for the key: sip:marios123@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios123@127.0.0.1:4000"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+RegistrationsTable, removeContact(), the registration: sip:marios123@127.0.0.1:4000 does not contain any contacts, we remove it
+RegistrationsTable, removeRegistration(),  registration removed for the key: sip:marios123@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:0
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: aa3576917c99f6a4f60475a4913d6797@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=846429578
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKa8964730ccd3e0c74af51de30140ccb2
+Max-Forwards: 70
+Expires: 0
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: aa3576917c99f6a4f60475a4913d6797@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=846429578
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bKa8964730ccd3e0c74af51de30140ccb2
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: dba98d00e093cd3879685ebf1dd5fbad@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=752892086
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK65f8620f19e7736cd44ed5055abba3e6
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios123@127.0.0.1:4000" : not registered
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:3600
+RegistrationsTable, startTimer(), An old timer has  been stopped for the contact: sip:192.168.1.6:5060
+RegistrationsTable, startTimer(), timer started  for the contact: sip:192.168.1.6:5060 , expiresTime:3600
+RegistrationsTable, addRegistration(), registration  added for the key: sip:marios123@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios123@127.0.0.1:4000"
+- contacts: 
+  contact 1 : Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, processRegister(),   we have to check if we have some SUBSCRIBE stored.
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: dba98d00e093cd3879685ebf1dd5fbad@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=752892086
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK65f8620f19e7736cd44ed5055abba3e6
+Max-Forwards: 70
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: dba98d00e093cd3879685ebf1dd5fbad@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=752892086
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK65f8620f19e7736cd44ed5055abba3e6
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>;expires=3600
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: dba98d00e093cd3879685ebf1dd5fbad@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=752892086
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK6594f77718ae690af71ebfbc2f4bb366
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:marios123@127.0.0.1:4000"
+RegistrationsTable, hasRegistration(), Checking registration for "sip:marios123@127.0.0.1:4000" : registered
+RegistrationsTable, updateRegistration(), registration updated for the key: sip:marios123@127.0.0.1:4000
+RegistrationsTable, removeContact(),  contact removed for the key: sip:marios123@127.0.0.1:4000
+DEBUG, Registration, removeContactHeader(): The contact: sip:192.168.1.6:5060 has been removed for the key: sip:marios123@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:marios123@127.0.0.1:4000"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+RegistrationsTable, removeContact(), the registration: sip:marios123@127.0.0.1:4000 does not contain any contacts, we remove it
+RegistrationsTable, removeRegistration(),  registration removed for the key: sip:marios123@127.0.0.1:4000
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+*********  Registration record *****************
+
+registered user: "sip:mranga@nist.gov"
+- contacts: 
+
+registered user: "sip:deruelle@nist.gov"
+- contacts: 
+
+************************************************
+
+Registrar, hasExpiresZero(), the REGISTER has an Expires Header with expires time:0
+Registrar, processRegister(), response sent:
+SIP/2.0 200 OK
+Call-ID: dba98d00e093cd3879685ebf1dd5fbad@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=752892086
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK6594f77718ae690af71ebfbc2f4bb366
+Max-Forwards: 70
+Expires: 0
+Content-Length: 0
+
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: dba98d00e093cd3879685ebf1dd5fbad@192.168.1.6
+CSeq: 2 REGISTER
+From: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>;tag=752892086
+To: "jmaria" <sip:marios123@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK6594f77718ae690af71ebfbc2f4bb366
+Max-Forwards: 70
+Expires: 0
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:marios123@127.0.0.1:4000
+
+****************************************************
+Request REGISTER received:
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 0a695e328742d1ce93d5476519718041@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:anna@127.0.0.1:4000;transport=udp>;tag=192025423
+To: "jmaria" <sip:anna@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5d11dbc16dbc33c9ec6c9bff3b48a9bb
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG TRANSACTION INFO: the transaction is null 
+Proxy, processRequest(), we are responsible for the domain... Let's find the contact...
+Incoming request Register
+Registrar, processRegister(), key: "sip:anna@127.0.0.1:4000"
+PresenceServer:processRegisterRequest: received a request
+REGISTER sip:127.0.0.1:5060;transport=udp SIP/2.0
+Call-ID: 0a695e328742d1ce93d5476519718041@192.168.1.6
+CSeq: 1 REGISTER
+From: "jmaria" <sip:anna@127.0.0.1:4000;transport=udp>;tag=192025423
+To: "jmaria" <sip:anna@127.0.0.1:4000;transport=udp>
+Via: SIP/2.0/UDP 192.168.1.6:5060;branch=z9hG4bK5d11dbc16dbc33c9ec6c9bff3b48a9bb
+Max-Forwards: 70
+Expires: 3600
+Contact: "jmaria" <sip:192.168.1.6:5060;transport=udp>
+Content-Length: 0
+
+
+DEBUG, PresenceServer, getKey(), the key is: sip:anna@127.0.0.1:4000
