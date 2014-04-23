@@ -369,6 +369,8 @@ public class RegistrationSplash extends JDialog {
 		} else if (cmd.equals(CMD_REGISTER)) {
 			userName = userNameTextField.getText();
 			password = passwordTextField.getPassword();
+			mail = mailTextField.getText();
+			creditCardNo = creditCardTextField.getText();
 		}
 		setVisible(false);
 		dispose();
