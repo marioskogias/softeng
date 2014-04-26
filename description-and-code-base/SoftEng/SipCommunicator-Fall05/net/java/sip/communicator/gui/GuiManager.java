@@ -383,6 +383,11 @@ public class GuiManager implements GuiCallback {
 		}
 	}
 
+	void forwardButton_actionPerformed(ActionEvent evt) {
+		// TODO temporarily close alerts from here.
+		System.out.println("Please forward\n");
+	}
+
 	void fireExitRequest() {
 		for (int i = listeners.size() - 1; i >= 0; i--) {
 			((UserActionListener) listeners.get(i)).handleExitRequest();
@@ -592,6 +597,11 @@ public class GuiManager implements GuiCallback {
 		phoneFrame.hangupButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent evt) {
 				hangupButton_actionPerformed(evt);
+			}
+		});
+		phoneFrame.forwardButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				forwardButton_actionPerformed(evt);
 			}
 		});
 		phoneFrame.addWindowListener(new WindowAdapter() {
