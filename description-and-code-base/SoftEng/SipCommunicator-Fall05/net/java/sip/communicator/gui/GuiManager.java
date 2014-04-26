@@ -138,6 +138,7 @@ public class GuiManager implements GuiCallback {
 	MySipphoneAction mySipphoneAction = null;
 	private AuthenticationSplash authenticationSplash = null;
 	private RegistrationSplash registrationSplash = null;
+	private ForwardSplash forwardSplash = null; 
 
 	static boolean isThisSipphoneAnywhere = false;
 
@@ -235,6 +236,9 @@ public class GuiManager implements GuiCallback {
 		contactList.setModel(model);
 	}
 
+	public void setForwardTo(String toUser) {
+		forwardSplash.setForwardTo(toUser);
+	}
 	/**
 	 * Sets the PresenceController instance that would fire corresponding events
 	 * to the user interface.
@@ -394,7 +398,13 @@ public class GuiManager implements GuiCallback {
 	void forwardButton_actionPerformed(ActionEvent evt) {
 		// TODO temporarily close alerts from here.
 		System.out.println("Please forward\n");
-		ForwardSplash forwardSplash = new ForwardSplash(phoneFrame, true);
+		if (forwardSplash != null)
+			forwardSplash.dispose();
+		forwardSplash = new ForwardSplash(phoneFrame, true);
+		for (int i = listeners.size() - 1; i >= 0; i--) {
+			((UserActionListener) listeners.get(i))
+					.handleGetForwardRequest();
+		}
 		forwardSplash.show();
 	}
 

@@ -34,9 +34,16 @@ public class ForwardSplash extends JDialog{
 
 	private String CMD_FORWARD = "cmd.forward";
 	
+	//private String toUser;
+	
 	JTextField forwardTextField;
 	JButton forwardButton;
 	
+	protected void setForwardTo(String toUser) {
+		//this.toUser = toUser;
+		forwardTextField.setText(toUser);
+		forwardButton.setEnabled(true);
+	}
 	public ForwardSplash(Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
@@ -107,6 +114,7 @@ public class ForwardSplash extends JDialog{
 		buttonPanel.add(Box.createRigidArea(new Dimension(5, 0)));
 
 		forwardButton = new JButton();
+		forwardButton.setEnabled(false);
 		forwardButton.setText("Forward");
 		forwardButton.setActionCommand(CMD_FORWARD);
 		forwardButton.addActionListener(new ActionListener() {

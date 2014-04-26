@@ -66,6 +66,7 @@ import java.awt.*;
 import net.java.sip.communicator.common.*;
 import net.java.sip.communicator.common.Console;
 import net.java.sip.communicator.db.RegisterDB;
+import net.java.sip.communicator.forwardService.ForwardClient;
 import net.java.sip.communicator.gui.*;
 import net.java.sip.communicator.gui.event.*;
 import net.java.sip.communicator.media.*;
@@ -113,7 +114,8 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 	protected SipManager sipManager = null;
 	protected SimpleContactList simpleContactList = null;
 	protected PresenceStatusController presenceStatusController = null;
-
+	protected ForwardClient forwardClient = null;
+	
 	protected Integer unregistrationLock = new Integer(0);
 
 	public SipCommunicator() {
@@ -403,8 +405,9 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 	
 	@Override
 	public void handleGetForwardRequest() {
-		// TODO Auto-generated method stub
-		
+		if (forwardClient == null)
+			forwardClient = new ForwardClient(); // lazy initialize
+		guiManager.setForwardTo(forwardClient.getForward(guiManager.getAuthenticationUserName()));
 	}
 
 	@Override
