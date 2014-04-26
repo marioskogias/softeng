@@ -33,11 +33,11 @@ public class ForwardSplash extends JDialog{
 	private String CMD_CANCEL = "cmd.cancel";
 
 	private String CMD_FORWARD = "cmd.forward";
-	
-	//private String toUser;
-	
+		
 	JTextField forwardTextField;
 	JButton forwardButton;
+	
+	protected String toUser;
 	
 	protected void setForwardTo(String toUser) {
 		//this.toUser = toUser;
@@ -159,9 +159,9 @@ public class ForwardSplash extends JDialog{
 		if (cmd == null) {
 			// do nothing
 		} else if (cmd.equals(CMD_CANCEL)) {
-			//pass
+			toUser = null;
 		} else if (cmd.equals(CMD_FORWARD)) {
-			//pass
+			toUser = forwardTextField.getText();
 		}
 		setVisible(false);
 		dispose();

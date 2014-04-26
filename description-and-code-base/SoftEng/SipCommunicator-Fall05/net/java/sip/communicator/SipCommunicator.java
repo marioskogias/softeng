@@ -412,8 +412,16 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 
 	@Override
 	public void handleNewForwardRequest() {
-		// TODO Auto-generated method stub
+		String toUser = guiManager.getForwardToUser();
+		String fromUser = guiManager.getAuthenticationUserName();
 		
+		if (toUser != null)
+			try {
+				forwardClient.setForward(fromUser, toUser);
+			}
+			catch (NoSuchElementException e) {
+				guiManager.alertNotFound();
+			}
 	}
 
 	/**

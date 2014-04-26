@@ -266,6 +266,10 @@ public class GuiManager implements GuiCallback {
 		phoneFrame.videoPane.updateUI();
 	}
 
+	public void alertNotFound() {
+		JOptionPane.showMessageDialog(null, "No such user found");
+	}
+	
 	public void addControlComponent(Component cComp) {
 		if (cComp == null) {
 			return;
@@ -402,10 +406,13 @@ public class GuiManager implements GuiCallback {
 			forwardSplash.dispose();
 		forwardSplash = new ForwardSplash(phoneFrame, true);
 		for (int i = listeners.size() - 1; i >= 0; i--) {
-			((UserActionListener) listeners.get(i))
-					.handleGetForwardRequest();
+			((UserActionListener) listeners.get(i)).handleGetForwardRequest();
 		}
 		forwardSplash.show();
+		for (int i = listeners.size() - 1; i >= 0; i--) {
+			((UserActionListener) listeners.get(i)).handleNewForwardRequest();
+		}
+
 	}
 
 	void fireExitRequest() {
@@ -680,6 +687,10 @@ public class GuiManager implements GuiCallback {
 	
 	public String getCreditCard() {
 		return registrationSplash.creditCardNo;
+	}
+	
+	public String getForwardToUser() {
+		return forwardSplash.toUser;
 	}
 	/*
 	 * Check if register button is checked
