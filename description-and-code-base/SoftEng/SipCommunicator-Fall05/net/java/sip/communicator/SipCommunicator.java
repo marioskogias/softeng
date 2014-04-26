@@ -400,6 +400,18 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 			console.logExit();
 		}
 	}
+	
+	@Override
+	public void handleGetForwardRequest() {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void handleNewForwardRequest() {
+		// TODO Auto-generated method stub
+		
+	}
 
 	/**
 	 * Tries to launch the NIST traces viewer. Changes made by M.Ranganathan to
@@ -918,4 +930,5 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 
 		return SubscriptionAuthorizationResponse.createResponse(response);
 	}
+
 }
