@@ -190,6 +190,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 				if (sipManager.isStarted()) {
 					console.trace("sipManager appears to be successfully started");
 					guiManager.setCommunicationActionsEnabled(true);
+					guiManager.setAdditionalActionsEnabled(true);
 				}
 			} catch (CommunicationsException exc) {
 				console.showException(

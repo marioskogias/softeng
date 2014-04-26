@@ -289,6 +289,10 @@ public class GuiManager implements GuiCallback {
 		phoneFrame.answerButton.setEnabled(enabled);
 	}
 
+	public void setAdditionalActionsEnabled(boolean enabled) {
+		phoneFrame.forwardButton.setEnabled(enabled);
+	}
+	
 	public void addUserActionListener(UserActionListener l) {
 		listeners.add(l);
 	}
