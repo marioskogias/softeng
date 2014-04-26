@@ -60,15 +60,22 @@ package net.java.sip.communicator.gui;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import net.java.sip.communicator.common.*;
 import net.java.sip.communicator.common.Console;
 import net.java.sip.communicator.gui.event.*;
+
 import java.awt.SystemColor;
+
 import javax.swing.plaf.metal.MetalLookAndFeel;
+
 import net.java.sip.communicator.gui.plaf.SipCommunicatorColorTheme;
+
 import java.awt.event.KeyEvent;
 import java.io.*;
+
 import net.java.sip.communicator.media.JMFRegistry;
 import net.java.sip.communicator.plugin.setup.*;
 import net.java.sip.communicator.gui.imp.*;
@@ -383,9 +390,12 @@ public class GuiManager implements GuiCallback {
 		}
 	}
 
+	@SuppressWarnings("deprecation")
 	void forwardButton_actionPerformed(ActionEvent evt) {
 		// TODO temporarily close alerts from here.
 		System.out.println("Please forward\n");
+		ForwardSplash forwardSplash = new ForwardSplash(phoneFrame, true);
+		forwardSplash.show();
 	}
 
 	void fireExitRequest() {
