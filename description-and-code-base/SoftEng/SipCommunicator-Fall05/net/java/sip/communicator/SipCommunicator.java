@@ -420,7 +420,10 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 				forwardClient.setForward(fromUser, toUser);
 			}
 			catch (NoSuchElementException e) {
-				guiManager.alertNotFound();
+				guiManager.alertError("There is no "+toUser+" user");
+			}
+			catch (RuntimeException e) {
+				guiManager.alertError("Aborted: This forward request creates a forwarding circle");
 			}
 	}
 

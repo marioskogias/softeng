@@ -2,13 +2,28 @@ package net.java.sip.communicator.forwardService;
 
 import java.util.NoSuchElementException;
 
+import net.java.sip.communicator.db.ForwardDB;
+
 public class ForwardClient {
 
-	public String getForward(String username) {
-		return "forward_to";
+	ForwardDB dbManager;
+	
+	public ForwardClient() {
+		dbManager = new ForwardDB();
 	}
 	
-	public void setForward(String fromUser, String toUser) throws NoSuchElementException{
-		throw new NoSuchElementException();
+	public String getForward(String username) {
+		return dbManager.getForward(username);
+	}
+	
+	/**
+	 * 
+	 * @param fromUser
+	 * @param toUser
+	 * @throws NoSuchElementException in case no such user found
+	 * @throws RuntimeException in case of a circle forwarding
+	 */
+	public void setForward(String fromUser, String toUser) throws NoSuchElementException, RuntimeException{
+		dbManager.setForward(fromUser, toUser);
 	}
 }

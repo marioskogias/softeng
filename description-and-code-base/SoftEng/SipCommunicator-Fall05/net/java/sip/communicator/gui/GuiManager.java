@@ -266,8 +266,8 @@ public class GuiManager implements GuiCallback {
 		phoneFrame.videoPane.updateUI();
 	}
 
-	public void alertNotFound() {
-		JOptionPane.showMessageDialog(null, "No such user found");
+	public void alertError(String message) {
+		JOptionPane.showMessageDialog(null, message);
 	}
 	
 	public void addControlComponent(Component cComp) {
