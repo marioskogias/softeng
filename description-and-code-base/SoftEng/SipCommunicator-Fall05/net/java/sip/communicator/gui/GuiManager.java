@@ -672,15 +672,22 @@ public class GuiManager implements GuiCallback {
 	}
 
 	public String getAuthenticationUserName() {
-		return authenticationSplash.userName == null ? registrationSplash.userName
-				: authenticationSplash.userName;
+		return authenticationSplash.userName; 
 	}
 
 	public char[] getAuthenticationPassword() {
-		return authenticationSplash.password == null ? registrationSplash.password
-				: authenticationSplash.password;
+		return authenticationSplash.password; 
 	}
 
+	
+	public String getUserName() {
+		return  registrationSplash.userName;
+	}
+
+	public char[] getPassword() {
+		return registrationSplash.password;
+	}
+	
 	public String getEmail() {
 		return registrationSplash.mail;
 	}

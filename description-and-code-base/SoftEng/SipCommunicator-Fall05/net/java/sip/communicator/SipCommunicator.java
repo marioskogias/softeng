@@ -757,8 +757,9 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 			guiManager.requestAuthentication(realm,
 					defaultValues.getUserName(), defaultValues.getPassword());
 
-			if (guiManager.shouldRegister())
+			if (guiManager.shouldRegister()) 
 				return obtainCredentialsAndRegister();
+		
 
 			UserCredentials credentials = new UserCredentials();
 
@@ -782,13 +783,13 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 
 			UserCredentials credentials = new UserCredentials();
 
-			credentials.setUserName(guiManager.getAuthenticationUserName());
-			credentials.setPassword(guiManager.getAuthenticationPassword());
+			credentials.setUserName(guiManager.getUserName());
+			credentials.setPassword(guiManager.getPassword());
 
 			// Register with the db manager here
 			RegisterDB rm = new RegisterDB();
-			rm.registerToDB(guiManager.getAuthenticationUserName(),
-					String.valueOf(guiManager.getAuthenticationPassword()),
+			rm.registerToDB(guiManager.getUserName(),
+					String.valueOf(guiManager.getPassword()),
 					guiManager.getEmail(), guiManager.getCreditCard());
 			
 			return credentials;
