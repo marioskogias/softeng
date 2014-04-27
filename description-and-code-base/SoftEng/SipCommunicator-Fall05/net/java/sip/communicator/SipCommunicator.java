@@ -66,6 +66,7 @@ import java.awt.*;
 import net.java.sip.communicator.common.*;
 import net.java.sip.communicator.common.Console;
 import net.java.sip.communicator.db.RegisterDB;
+import net.java.sip.communicator.forwardService.ForwardClient;
 import net.java.sip.communicator.gui.*;
 import net.java.sip.communicator.gui.event.*;
 import net.java.sip.communicator.media.*;
@@ -113,7 +114,8 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 	protected SipManager sipManager = null;
 	protected SimpleContactList simpleContactList = null;
 	protected PresenceStatusController presenceStatusController = null;
-
+	protected ForwardClient forwardClient = null;
+	
 	protected Integer unregistrationLock = new Integer(0);
 
 	public SipCommunicator() {
@@ -190,6 +192,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 				if (sipManager.isStarted()) {
 					console.trace("sipManager appears to be successfully started");
 					guiManager.setCommunicationActionsEnabled(true);
+					guiManager.setAdditionalActionsEnabled(true);
 				}
 			} catch (CommunicationsException exc) {
 				console.showException(
@@ -398,6 +401,30 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 		} finally {
 			console.logExit();
 		}
+	}
+	
+	@Override
+	public void handleGetForwardRequest() {
+		if (forwardClient == null)
+			forwardClient = new ForwardClient(); // lazy initialize
+		guiManager.setForwardTo(forwardClient.getForward(guiManager.getAuthenticationUserName()));
+	}
+
+	@Override
+	public void handleNewForwardRequest() {
+		String toUser = guiManager.getForwardToUser();
+		String fromUser = guiManager.getAuthenticationUserName();
+		
+		if (toUser != null)
+			try {
+				forwardClient.setForward(fromUser, toUser);
+			}
+			catch (NoSuchElementException e) {
+				guiManager.alertError("There is no "+toUser+" user");
+			}
+			catch (RuntimeException e) {
+				guiManager.alertError("Aborted: This forward request creates a forwarding circle");
+			}
 	}
 
 	/**
@@ -917,4 +944,5 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 
 		return SubscriptionAuthorizationResponse.createResponse(response);
 	}
+
 }

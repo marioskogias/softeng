@@ -60,15 +60,22 @@ package net.java.sip.communicator.gui;
 import java.util.*;
 import java.awt.*;
 import java.awt.event.*;
+
 import javax.swing.*;
+
 import net.java.sip.communicator.common.*;
 import net.java.sip.communicator.common.Console;
 import net.java.sip.communicator.gui.event.*;
+
 import java.awt.SystemColor;
+
 import javax.swing.plaf.metal.MetalLookAndFeel;
+
 import net.java.sip.communicator.gui.plaf.SipCommunicatorColorTheme;
+
 import java.awt.event.KeyEvent;
 import java.io.*;
+
 import net.java.sip.communicator.media.JMFRegistry;
 import net.java.sip.communicator.plugin.setup.*;
 import net.java.sip.communicator.gui.imp.*;
@@ -131,6 +138,7 @@ public class GuiManager implements GuiCallback {
 	MySipphoneAction mySipphoneAction = null;
 	private AuthenticationSplash authenticationSplash = null;
 	private RegistrationSplash registrationSplash = null;
+	private ForwardSplash forwardSplash = null; 
 
 	static boolean isThisSipphoneAnywhere = false;
 
@@ -228,6 +236,9 @@ public class GuiManager implements GuiCallback {
 		contactList.setModel(model);
 	}
 
+	public void setForwardTo(String toUser) {
+		forwardSplash.setForwardTo(toUser);
+	}
 	/**
 	 * Sets the PresenceController instance that would fire corresponding events
 	 * to the user interface.
@@ -255,6 +266,10 @@ public class GuiManager implements GuiCallback {
 		phoneFrame.videoPane.updateUI();
 	}
 
+	public void alertError(String message) {
+		JOptionPane.showMessageDialog(null, message);
+	}
+	
 	public void addControlComponent(Component cComp) {
 		if (cComp == null) {
 			return;
@@ -289,6 +304,10 @@ public class GuiManager implements GuiCallback {
 		phoneFrame.answerButton.setEnabled(enabled);
 	}
 
+	public void setAdditionalActionsEnabled(boolean enabled) {
+		phoneFrame.forwardButton.setEnabled(enabled);
+	}
+	
 	public void addUserActionListener(UserActionListener l) {
 		listeners.add(l);
 	}
@@ -377,6 +396,23 @@ public class GuiManager implements GuiCallback {
 			((UserActionListener) listeners.get(i))
 					.handleAnswerRequest(commEvt);
 		}
+	}
+
+	@SuppressWarnings("deprecation")
+	void forwardButton_actionPerformed(ActionEvent evt) {
+		// TODO temporarily close alerts from here.
+		System.out.println("Please forward\n");
+		if (forwardSplash != null)
+			forwardSplash.dispose();
+		forwardSplash = new ForwardSplash(phoneFrame, true);
+		for (int i = listeners.size() - 1; i >= 0; i--) {
+			((UserActionListener) listeners.get(i)).handleGetForwardRequest();
+		}
+		forwardSplash.show();
+		for (int i = listeners.size() - 1; i >= 0; i--) {
+			((UserActionListener) listeners.get(i)).handleNewForwardRequest();
+		}
+
 	}
 
 	void fireExitRequest() {
@@ -590,6 +626,11 @@ public class GuiManager implements GuiCallback {
 				hangupButton_actionPerformed(evt);
 			}
 		});
+		phoneFrame.forwardButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				forwardButton_actionPerformed(evt);
+			}
+		});
 		phoneFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
 				fireExitRequest();
@@ -646,6 +687,10 @@ public class GuiManager implements GuiCallback {
 	
 	public String getCreditCard() {
 		return registrationSplash.creditCardNo;
+	}
+	
+	public String getForwardToUser() {
+		return forwardSplash.toUser;
 	}
 	/*
 	 * Check if register button is checked

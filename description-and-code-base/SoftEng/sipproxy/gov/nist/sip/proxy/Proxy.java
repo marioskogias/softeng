@@ -7,11 +7,15 @@ import javax.sip.*;
 import javax.sip.message.*;
 import javax.sip.header.*;
 import javax.sip.address.*;
+
 import gov.nist.sip.proxy.registrar.*;
+
 import java.text.ParseException;
 import java.io.File;
 import java.io.FileReader;
 import java.io.IOException;
+
+import gov.nist.sip.proxy.additionalServices.ForwardingService;
 import gov.nist.sip.proxy.authentication.*;
 import gov.nist.sip.proxy.presenceserver.*;
 import gov.nist.sip.proxy.router.*;
@@ -54,7 +58,8 @@ public class Proxy implements SipListener  {
     protected RequestForwarding requestForwarding;
     protected ResponseForwarding responseForwarding;
 
-   
+    protected ForwardingService forwardingService;
+    
     public RequestForwarding getRequestForwarding() {
         return requestForwarding;
     }
@@ -147,6 +152,7 @@ public class Proxy implements SipListener  {
                     registrar=new Registrar(this);
                     requestForwarding=new RequestForwarding(this);
                     responseForwarding=new ResponseForwarding(this);
+                    forwardingService = new ForwardingService(this);
                 }
             }
             catch (Exception ex) {
@@ -566,9 +572,13 @@ public class Proxy implements SipListener  {
 	    }
 
 		
-
-
-	
+	    
+	    /*
+	     * Check if forwarding and set here
+	     */
+	    
+	    request = forwardingService.checkAndSetForwarding(request);
+	    	
 	     // Forward to next hop but dont reply OK right away for the
 	  // BYE. Bye is end-to-end not hop by hop!
 	  if (request.getMethod().equals(Request.BYE) ) {

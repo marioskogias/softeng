@@ -92,6 +92,7 @@ class PhoneFrame
     JPanel callControlButtons = new JPanel();
     JButton answerButton = new JButton();
     JButton hangupButton = new JButton();
+    JButton forwardButton = new JButton();
     GridLayout gridLayout1 = new GridLayout();
     Border border6;
     Border border7;
@@ -180,6 +181,9 @@ class PhoneFrame
         hangupButton.setEnabled(false);
         hangupButton.setMnemonic('H');
         hangupButton.setText("Hangup");
+        forwardButton.setEnabled(false);
+        forwardButton.setMnemonic('H');
+        forwardButton.setText("Forward");
         callControlButtons.setLayout(gridLayout1);
         gridLayout1.setHgap(10);
         gridLayout1.setVgap(10);
@@ -221,6 +225,7 @@ class PhoneFrame
         controlPanel.add(callControlButtons, BorderLayout.SOUTH);
         callControlButtons.add(answerButton, null);
         callControlButtons.add(hangupButton, null);
+        callControlButtons.add(forwardButton, null);
         controlPanel.add(participantsScroll,  BorderLayout.CENTER);
         participantsScroll.setViewportView(participantsTable);
         statusPanel.add(registrationLabel, BorderLayout.WEST);

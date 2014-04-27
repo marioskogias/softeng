@@ -79,6 +79,10 @@ public interface UserActionListener
 
     public void handleExitRequest();
 
+    public void handleGetForwardRequest();
+    
+    public void handleNewForwardRequest();
+    
 /** @todo remove after testing */
 //    public void handlePropertiesSaveRequest();
 
