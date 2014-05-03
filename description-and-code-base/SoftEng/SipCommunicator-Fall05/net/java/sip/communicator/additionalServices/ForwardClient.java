@@ -1,4 +1,4 @@
-package net.java.sip.communicator.forwardService;
+package net.java.sip.communicator.additionalServices;
 
 import java.util.NoSuchElementException;
 

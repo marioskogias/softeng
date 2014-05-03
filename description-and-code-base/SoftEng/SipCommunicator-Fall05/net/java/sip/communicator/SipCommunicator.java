@@ -63,10 +63,10 @@ import java.net.*;
 import java.util.*;
 import java.awt.*;
 
+import net.java.sip.communicator.additionalServices.ForwardClient;
 import net.java.sip.communicator.common.*;
 import net.java.sip.communicator.common.Console;
 import net.java.sip.communicator.db.RegisterDB;
-import net.java.sip.communicator.forwardService.ForwardClient;
 import net.java.sip.communicator.gui.*;
 import net.java.sip.communicator.gui.event.*;
 import net.java.sip.communicator.media.*;
