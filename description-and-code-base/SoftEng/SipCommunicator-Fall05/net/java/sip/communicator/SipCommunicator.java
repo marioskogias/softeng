@@ -414,17 +414,21 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 	public void handleNewForwardRequest() {
 		String toUser = guiManager.getForwardToUser();
 		String fromUser = guiManager.getAuthenticationUserName();
-		
+
 		if (toUser != null)
-			try {
-				forwardClient.setForward(fromUser, toUser);
+			if (toUser.equals("")) {
+				forwardClient.resetForward(fromUser);
+				System.out.println("Please reset");
 			}
-			catch (NoSuchElementException e) {
-				guiManager.alertError("There is no "+toUser+" user");
-			}
-			catch (RuntimeException e) {
-				guiManager.alertError("Aborted: This forward request creates a forwarding circle");
-			}
+			else
+				try {
+					forwardClient.setForward(fromUser, toUser);
+				} catch (NoSuchElementException e) {
+					guiManager.alertError("There is no " + toUser + " user");
+				} catch (RuntimeException e) {
+					guiManager
+							.alertError("Aborted: This forward request creates a forwarding circle");
+				}
 	}
 
 	/**

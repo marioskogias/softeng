@@ -16,14 +16,19 @@ public class ForwardDB {
 
 	public ForwardDB() {
 		dbCred = new ParseXMLCredentials();
+		try {
+			Class.forName("com.mysql.jdbc.Driver");
+		} catch (ClassNotFoundException e) {
+			e.printStackTrace();
+		}
 	}
 
 	public String getForward(String username) {
 		String forwardTo = "";
 		try {
-			Class.forName("com.mysql.jdbc.Driver");
-			conn = DriverManager.getConnection(dbCred.getUrl(),
-					dbCred.getUsername(), dbCred.getPassword());
+			if (conn == null)
+				conn = DriverManager.getConnection(dbCred.getUrl(),
+						dbCred.getUsername(), dbCred.getPassword());
 			stmt = conn
 					.prepareStatement("SELECT forwardTo FROM forwarding where forwardFrom = ?");
 
@@ -34,8 +39,6 @@ public class ForwardDB {
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();
-		} catch (ClassNotFoundException e) {
-			e.printStackTrace();
 		}
 
 		return forwardTo;
@@ -45,8 +48,9 @@ public class ForwardDB {
 			throws NoSuchElementException, RuntimeException {
 
 		try {
-			conn = DriverManager.getConnection(dbCred.getUrl(),
-					dbCred.getUsername(), dbCred.getPassword());
+			if (conn == null)
+				conn = DriverManager.getConnection(dbCred.getUrl(),
+						dbCred.getUsername(), dbCred.getPassword());
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
@@ -69,7 +73,7 @@ public class ForwardDB {
 		HashSet<String> userSet = new HashSet<String>();
 		userSet.add(fromUser);
 		userSet.add(toUser);
-		
+
 		try {
 			stmt = conn
 					.prepareStatement("SELECT forwardTo FROM forwarding where forwardFrom = ?");
@@ -78,7 +82,7 @@ public class ForwardDB {
 		}
 		String tempFrom = toUser;
 		String forwardTo;
-		while(true) {
+		while (true) {
 			try {
 				stmt.setString(1, tempFrom);
 				ResultSet rs = stmt.executeQuery();
@@ -91,14 +95,14 @@ public class ForwardDB {
 					break;
 			} catch (SQLException e) {
 				e.printStackTrace();
-			}	
+			}
 		}
-		
+
 		/*
-		 * ready to set the new forward
-		 * first delete the old if exists and then set the new
+		 * ready to set the new forward first delete the old if exists and then
+		 * set the new
 		 */
-		
+
 		try {
 			stmt = conn
 					.prepareStatement("delete from forwarding where forwardFrom=?");
@@ -112,6 +116,21 @@ public class ForwardDB {
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}
-		
+
+	}
+
+	public void resetForward(String user) {
+		try {
+			if (conn == null)
+				conn = DriverManager.getConnection(dbCred.getUrl(),
+						dbCred.getUsername(), dbCred.getPassword());
+			stmt = conn
+					.prepareStatement("delete from forwarding where forwardFrom=?");
+			stmt.setString(1, user);
+			stmt.executeUpdate();
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+
 	}
 }

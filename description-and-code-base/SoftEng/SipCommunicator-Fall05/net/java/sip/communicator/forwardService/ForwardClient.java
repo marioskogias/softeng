@@ -26,4 +26,8 @@ public class ForwardClient {
 	public void setForward(String fromUser, String toUser) throws NoSuchElementException, RuntimeException{
 		dbManager.setForward(fromUser, toUser);
 	}
+	
+	public void resetForward(String fromUser) {
+		dbManager.resetForward(fromUser);
+	}
 }

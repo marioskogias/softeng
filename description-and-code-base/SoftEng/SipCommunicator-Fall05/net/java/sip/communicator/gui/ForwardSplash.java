@@ -115,7 +115,7 @@ public class ForwardSplash extends JDialog{
 
 		forwardButton = new JButton();
 		forwardButton.setEnabled(false);
-		forwardButton.setText("Forward");
+		forwardButton.setText("Ok");
 		forwardButton.setActionCommand(CMD_FORWARD);
 		forwardButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {

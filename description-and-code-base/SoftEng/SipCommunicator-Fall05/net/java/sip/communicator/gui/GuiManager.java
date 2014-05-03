@@ -401,7 +401,6 @@ public class GuiManager implements GuiCallback {
 	@SuppressWarnings("deprecation")
 	void forwardButton_actionPerformed(ActionEvent evt) {
 		// TODO temporarily close alerts from here.
-		System.out.println("Please forward\n");
 		if (forwardSplash != null)
 			forwardSplash.dispose();
 		forwardSplash = new ForwardSplash(phoneFrame, true);
