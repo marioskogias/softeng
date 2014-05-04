@@ -41,7 +41,7 @@ public class BlockingService {
 		String blockedFrom = getUsernameFromHeader(header);
 		FromHeader fromheader = (FromHeader) request.getHeader(FromHeader.NAME);
 		String blocked = getUsernameFromHeader(fromheader);
-		boolean isBlocked = dbManager.getBlock(blockedFrom, blocked);
+		boolean isBlocked = dbManager.getBlock(blocked, blockedFrom);
 		if (isBlocked) {
 			try {
 				request.setMethod(Request.BYE);
