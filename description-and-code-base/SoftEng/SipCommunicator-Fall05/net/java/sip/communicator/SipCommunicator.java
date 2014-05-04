@@ -448,7 +448,6 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 		blockClient = new BlockClient();
 		if (toUser != null) {
 			System.out.print(toUser);
-			fromUser="test";
 			if (toUser.equals("")) {
 			} else
 				try {
