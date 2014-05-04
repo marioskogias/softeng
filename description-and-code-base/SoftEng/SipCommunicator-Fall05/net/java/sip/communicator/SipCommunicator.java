@@ -441,36 +441,30 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 				.getAuthenticationUserName()));
 	}
 
+
 	@Override
 	public void handleNewBlockRequest() {
 		String toUser = guiManager.getBlock();
 		String fromUser = guiManager.getAuthenticationUserName();
-		blockClient = new BlockClient();
-		if (toUser != null) {
-			System.out.print(toUser);
-			if (toUser.equals("")) {
-			} else
-				try {
-					blockClient.blockUser(fromUser, toUser);
-				} catch (NoSuchElementException e) {
-					guiManager.alertError("There is no " + toUser + " user");
-				}
-		}
-	}
-
-	@Override
-	public void handleNewUnblockRequest() {
-		String toUser = guiManager.getUnblock();
-		String fromUser = guiManager.getAuthenticationUserName();
-
+		String action = guiManager.getAction();
 		if (toUser != null)
 			if (toUser.equals("")) {
-			} else
-				try {
-					blockClient.unblockUser(fromUser, toUser);
-				} catch (NoSuchElementException e) {
-					guiManager.alertError("There is no " + toUser + " user");
+			} else {
+				if (action == "block"){
+					try {
+						blockClient.blockUser(fromUser, toUser);
+					} catch (NoSuchElementException e) {
+						guiManager.alertError("There is no " + toUser + " user");
+					}
 				}
+				else
+					try {
+						blockClient.unblockUser(fromUser, toUser);
+					} catch (NoSuchElementException e) {
+						guiManager
+								.alertError("There is no " + toUser + " user");
+					}
+			}
 	}
 
 	/**

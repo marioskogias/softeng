@@ -140,7 +140,6 @@ public class GuiManager implements GuiCallback {
 	private RegistrationSplash registrationSplash = null;
 	private ForwardSplash forwardSplash = null;
 	private BlockSplash blockSplash = null;
-	private UnblockSplash unblockSplash = null;
 
 	static boolean isThisSipphoneAnywhere = false;
 
@@ -243,7 +242,7 @@ public class GuiManager implements GuiCallback {
 	}
 
 	public void setBlockList(String blocklist) {
-		unblockSplash.blockList(blocklist);
+		blockSplash.blockList(blocklist);
 	}
 	
 
@@ -315,7 +314,6 @@ public class GuiManager implements GuiCallback {
 	public void setAdditionalActionsEnabled(boolean enabled) {
 		phoneFrame.forwardButton.setEnabled(enabled);
 		phoneFrame.blockButton.setEnabled(enabled);
-		phoneFrame.unblockButton.setEnabled(enabled);
 	}
 
 	public void addUserActionListener(UserActionListener l) {
@@ -425,26 +423,15 @@ public class GuiManager implements GuiCallback {
 	}
 
 	void blockButton_actionPerformed(ActionEvent evnt) {
-		
-		 if (blockSplash != null) 
+		 if (blockSplash != null)
 			 blockSplash.dispose(); 
 		 blockSplash = new BlockSplash (phoneFrame, true);
-		 blockSplash.show();
-		 for (int i = listeners.size() -1; i>=0; i--){
-			 ((UserActionListener) listeners.get(i)).handleNewBlockRequest();
-		 }
-	}
-
-	void unblockButton_actionPerformed(ActionEvent evnt) {
-		 if (unblockSplash != null) 
-			 unblockSplash.dispose(); 
-		 unblockSplash = new UnblockSplash (phoneFrame, true);
 		 for (int i = listeners.size() - 1; i>=0; i--) {
 			 ((UserActionListener) listeners.get(i)).handleGetBlockList();
 		 }
-		 unblockSplash.show();
+		 blockSplash.show();
 		 for (int i = listeners.size() -1; i>=0; i--){
-			 ((UserActionListener) listeners.get(i)).handleNewUnblockRequest();
+			 ((UserActionListener) listeners.get(i)).handleNewBlockRequest();
 		 }
 	}
 
@@ -669,11 +656,6 @@ public class GuiManager implements GuiCallback {
 				blockButton_actionPerformed(evt);
 			}
 		});
-		phoneFrame.unblockButton.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent evt) {
-				unblockButton_actionPerformed(evt);
-			}
-		});
 		phoneFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
 				fireExitRequest();
@@ -746,8 +728,8 @@ public class GuiManager implements GuiCallback {
 		return blockSplash.toUser;
 	}
 	
-	public String getUnblock(){
-		return unblockSplash.toUser;
+	public String getAction(){
+		return blockSplash.action;
 	}
 	/*
 	 * Check if register button is checked

@@ -38,6 +38,9 @@ public class BlockDB {
 				
 				blocklist = blocklist + rs.getString("blocked") + "\n";
 			}
+			if (blocklist.isEmpty()){
+				blocklist = "no users blocked\n\t ...yet";
+			}
 		} catch (SQLException e) {
 			e.printStackTrace();
 		}

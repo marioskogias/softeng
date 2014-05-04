@@ -18,47 +18,55 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
+public class BlockSplash extends JDialog {
 
-public class BlockSplash extends JDialog{
-	
 	/**
 	 * 
 	 */
 	private static final long serialVersionUID = 1L;
-	
+
 	private String CMD_CANCEL = "cmd.cancel";
 
+	private String CMD_UNBLOCK = "cmd.unblock";
+
 	private String CMD_BLOCK = "cmd.block";
-		
-	JTextField blockTextField;
+
+	JTextArea unblocklist;
+	JTextField blockControlTextField;
+	JButton unblockButton;
 	JButton blockButton;
-	
+
 	protected String toUser;
-	
-	protected void enableBlock() {
-		//this.toUser = toUser;
-		
+	protected String action;
+
+	protected void blockList(String blocklist) {
+		// this.toUser = toUser;
+		unblocklist.setText(blocklist);
+		unblocklist.setEditable(false);
+		// blockControlTextField.setText(blocklist);
+		unblockButton.setEnabled(true);
 	}
-	
+
 	public BlockSplash(Frame parent, boolean modal) {
 		super(parent, modal);
 		initComponents();
 		pack();
 	}
-	
+
 	private void initComponents() {
-		
 		Container contents = getContentPane();
 		contents.setLayout(new BorderLayout());
 
-		String title = "Block Panel";
+		String title = "Block Control Panel";
 
 		setTitle(title);
-		setResizable(false);
+		setResizable(true);
 		addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent event) {
 				dialogDone(CMD_CANCEL);
@@ -67,10 +75,9 @@ public class BlockSplash extends JDialog{
 
 		// Accessibility -- all frames, dialogs, and applets should
 		// have a description
-		getAccessibleContext()
-				.setAccessibleDescription("Block Splash");
+		getAccessibleContext().setAccessibleDescription("Unblock Splash");
 
-		String authPromptLabelValue  = "Please enter the username to block";
+		String authPromptLabelValue = "Please enter the username to unblock";
 
 		JLabel splashLabel = new JLabel(authPromptLabelValue);
 		splashLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -81,25 +88,40 @@ public class BlockSplash extends JDialog{
 		JPanel centerPane = new JPanel();
 		centerPane.setLayout(new GridBagLayout());
 
-		blockTextField = new JTextField(); // needed below
+		blockControlTextField = new JTextField(); // needed below
+		unblocklist = new JTextArea();// new JLabel();
 
 		// user name label
-		JLabel blockLabel = new JLabel();
-		blockLabel.setDisplayedMnemonic('B');
+		JLabel unblockLabel = new JLabel();
+		unblockLabel.setDisplayedMnemonic('U');
 		// setLabelFor() allows the mnemonic to work
-		blockLabel.setLabelFor(blockTextField);
-
+		unblockLabel.setLabelFor(blockControlTextField);
 
 		int gridy = 0;
-
-		blockLabel.setText("Block user:");
+		JLabel blockListLabel = new JLabel();
+		blockListLabel.setText("Blocked users:");
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = gridy;
 		c.anchor = GridBagConstraints.WEST;
 		c.insets = new Insets(12, 12, 0, 0);
-		centerPane.add(blockLabel, c);
+		centerPane.add(blockListLabel, c);
 
+		c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = gridy++;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx = 1.0;
+		c.insets = new Insets(12, 7, 0, 11);
+		centerPane.add(unblocklist, c);
+
+		unblockLabel.setText("Select user:");
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = gridy;
+		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(12, 12, 0, 0);
+		centerPane.add(unblockLabel, c);
 		// user name text
 		c = new GridBagConstraints();
 		c.gridx = 1;
@@ -107,7 +129,7 @@ public class BlockSplash extends JDialog{
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 1.0;
 		c.insets = new Insets(12, 7, 0, 11);
-		centerPane.add(blockTextField, c);
+		centerPane.add(blockControlTextField, c);
 		// Buttons along bottom of window
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, 0));
@@ -116,7 +138,7 @@ public class BlockSplash extends JDialog{
 
 		blockButton = new JButton();
 		blockButton.setEnabled(true);
-		blockButton.setText("Ok");
+		blockButton.setText("Block");
 		blockButton.setActionCommand(CMD_BLOCK);
 		blockButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -124,6 +146,17 @@ public class BlockSplash extends JDialog{
 			}
 		});
 		buttonPanel.add(blockButton);
+
+		unblockButton = new JButton();
+		unblockButton.setEnabled(false);
+		unblockButton.setText("Unblock");
+		unblockButton.setActionCommand(CMD_UNBLOCK);
+		unblockButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent event) {
+				dialogDone(event);
+			}
+		});
+		buttonPanel.add(unblockButton);
 
 		c = new GridBagConstraints();
 		c.gridx = 0;
@@ -134,9 +167,9 @@ public class BlockSplash extends JDialog{
 		centerPane.add(buttonPanel, c);
 
 		contents.add(centerPane, BorderLayout.CENTER);
-		getRootPane().setDefaultButton(blockButton);
+		getRootPane().setDefaultButton(unblockButton);
 
-		//setFocusTraversalPolicy(new FocusTraversalPol());
+		// setFocusTraversalPolicy(new FocusTraversalPol());
 
 	} // initComponents()
 
@@ -161,8 +194,12 @@ public class BlockSplash extends JDialog{
 			// do nothing
 		} else if (cmd.equals(CMD_CANCEL)) {
 			toUser = null;
+		} else if (cmd.equals(CMD_UNBLOCK)) {
+			toUser = blockControlTextField.getText();
+			action = "unblock";
 		} else if (cmd.equals(CMD_BLOCK)) {
-			toUser = blockTextField.getText();
+			toUser = blockControlTextField.getText();
+			action = "block";
 		}
 		setVisible(false);
 		dispose();
