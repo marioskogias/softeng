@@ -75,6 +75,17 @@ public class BlockDB {
 		 */
 		try {
 			stmt = conn
+					.prepareStatement("SELECT * FROM blocking where blocked =? AND blockedFrom = ?");
+			stmt.setString(2, fromUser);
+			stmt.setString(1, toUser);
+			ResultSet re = stmt.executeQuery();
+			if (re.next())
+				return;
+		} catch (SQLException e){
+			e.printStackTrace();
+		}
+		try {
+			stmt = conn
 					.prepareStatement("insert into blocking set blockedFrom=?, blocked=?");
 			stmt.setString(1, fromUser);
 			stmt.setString(2, toUser);
