@@ -34,8 +34,9 @@ public class BlockDB {
 
 			stmt.setString(1, username);
 			ResultSet rs = stmt.executeQuery();
-			if (rs.next()) {
-				blocklist = rs.getString("blocked");
+			while (rs.next()) {
+				
+				blocklist = blocklist + rs.getString("blocked") + "\n";
 			}
 		} catch (SQLException e) {
 			e.printStackTrace();

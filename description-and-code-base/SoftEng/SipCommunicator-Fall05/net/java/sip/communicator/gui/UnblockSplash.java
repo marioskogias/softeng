@@ -18,7 +18,9 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
+import javax.swing.JList;
 import javax.swing.JPanel;
+import javax.swing.JTextArea;
 import javax.swing.JTextField;
 import javax.swing.SwingConstants;
 
@@ -33,15 +35,19 @@ public class UnblockSplash extends JDialog{
 	private String CMD_CANCEL = "cmd.cancel";
 
 	private String CMD_UNBLOCK = "cmd.unblock";
-		
+	
+	JTextArea unblocklist;
 	JTextField unblockTextField;
 	JButton unblockButton;
+	
 	
 	protected String toUser;
 	
 	protected void blockList(String blocklist) {
 		//this.toUser = toUser;
-		unblockTextField.setText(blocklist);
+		unblocklist.setText(blocklist);
+		unblocklist.setEditable(false);
+		//unblockTextField.setText(blocklist);
 		unblockButton.setEnabled(true);
 	}
 	public UnblockSplash(Frame parent, boolean modal) {
@@ -81,6 +87,7 @@ public class UnblockSplash extends JDialog{
 		centerPane.setLayout(new GridBagLayout());
 
 		unblockTextField = new JTextField(); // needed below
+		unblocklist = new JTextArea();//new JLabel();
 
 		// user name label
 		JLabel unblockLabel = new JLabel();
@@ -90,15 +97,30 @@ public class UnblockSplash extends JDialog{
 
 
 		int gridy = 0;
-
-		unblockLabel.setText("Unblock user:");
+		JLabel blockListLabel = new JLabel();
+		blockListLabel.setText("Blocked users:");
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = gridy;
 		c.anchor = GridBagConstraints.WEST;
 		c.insets = new Insets(12, 12, 0, 0);
-		centerPane.add(unblockLabel, c);
+		centerPane.add(blockListLabel, c);
 
+		c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = gridy++;
+		c.fill = GridBagConstraints.HORIZONTAL;
+		c.weightx = 1.0;
+		c.insets = new Insets(12, 7, 0, 11);
+		centerPane.add(unblocklist, c);
+		
+		unblockLabel.setText("Unblock user:");
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = gridy;
+		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(12, 12, 0, 0);
+		centerPane.add(unblockLabel, c);
 		// user name text
 		c = new GridBagConstraints();
 		c.gridx = 1;
