@@ -4,6 +4,8 @@ import gov.nist.sip.db.BillingDB;
 
 import javax.sip.address.URI;
 import javax.sip.header.FromHeader;
+import javax.sip.header.HeaderAddress;
+import javax.sip.header.ToHeader;
 import javax.sip.message.Request;
 
 public class BillingService {
@@ -15,18 +17,24 @@ public class BillingService {
 	}
 
 	public boolean startBilling(Request request) {
-		FromHeader header = (FromHeader) request.getHeader(FromHeader.NAME);
+		HeaderAddress header = (HeaderAddress) request.getHeader(FromHeader.NAME);
 		String username = getUsernameFromHeader(header);
 		return mBillingDB.addBillingRecord(username);
 	}
 	
 	public boolean stopBilling(Request request) {
-		FromHeader header = (FromHeader) request.getHeader(FromHeader.NAME);
+		HeaderAddress header = (HeaderAddress) request.getHeader(FromHeader.NAME);
 		String username = getUsernameFromHeader(header);
-		return mBillingDB.finalizeBillingRecord(username);
+		if (mBillingDB.finalizeBillingRecord(username)) {
+			return true;
+		} else {
+			header = (HeaderAddress) request.getHeader(ToHeader.NAME);
+			username = getUsernameFromHeader(header);
+			return mBillingDB.finalizeBillingRecord(username);
+		}
 	}
 
-	private String getUsernameFromHeader(FromHeader header) {
+	private String getUsernameFromHeader(HeaderAddress header) {
 		URI uri = header.getAddress().getURI();
 		String uriString = uri.toString();
 		return uriString.substring(uriString.indexOf("sip:") + 4,
