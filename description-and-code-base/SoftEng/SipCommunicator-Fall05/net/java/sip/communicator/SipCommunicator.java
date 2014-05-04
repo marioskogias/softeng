@@ -445,8 +445,10 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 	public void handleNewBlockRequest() {
 		String toUser = guiManager.getBlock();
 		String fromUser = guiManager.getAuthenticationUserName();
-
-		if (toUser != null)
+		blockClient = new BlockClient();
+		if (toUser != null) {
+			System.out.print(toUser);
+			fromUser="test";
 			if (toUser.equals("")) {
 			} else
 				try {
@@ -454,7 +456,9 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 				} catch (NoSuchElementException e) {
 					guiManager.alertError("There is no " + toUser + " user");
 				}
+		}
 	}
+
 	@Override
 	public void handleNewUnblockRequest() {
 		String toUser = guiManager.getUnblock();
@@ -469,7 +473,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 					guiManager.alertError("There is no " + toUser + " user");
 				}
 	}
-	
+
 	/**
 	 * Tries to launch the NIST traces viewer. Changes made by M.Ranganathan to
 	 * match new logging system.
