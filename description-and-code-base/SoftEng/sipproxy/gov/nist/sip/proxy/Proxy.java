@@ -587,6 +587,7 @@ public class Proxy implements SipListener  {
 					serverTransaction.sendResponse(response);
 				else
 					sipProvider.sendResponse(response);
+				return;
 			}
 			request = forwardingService.checkAndSetForwarding(request);
 			blocked = blockingService.checkIfBlock(request);
@@ -597,6 +598,7 @@ public class Proxy implements SipListener  {
 					serverTransaction.sendResponse(response);
 				else
 					sipProvider.sendResponse(response);
+				return;
 			}
 	     // Forward to next hop but dont reply OK right away for the
 	  // BYE. Bye is end-to-end not hop by hop!
