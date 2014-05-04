@@ -2,3 +2,5 @@
 *.class
 *.txt
 .metadata
+.project
+.DS_Store
