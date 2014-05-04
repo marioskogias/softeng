@@ -63,6 +63,7 @@ import java.net.*;
 import java.util.*;
 import java.awt.*;
 
+import net.java.sip.communicator.additionalServices.BlockClient;
 import net.java.sip.communicator.additionalServices.ForwardClient;
 import net.java.sip.communicator.common.*;
 import net.java.sip.communicator.common.Console;
@@ -115,7 +116,8 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 	protected SimpleContactList simpleContactList = null;
 	protected PresenceStatusController presenceStatusController = null;
 	protected ForwardClient forwardClient = null;
-	
+	protected BlockClient blockClient = null;
+
 	protected Integer unregistrationLock = new Integer(0);
 
 	public SipCommunicator() {
@@ -402,12 +404,13 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 			console.logExit();
 		}
 	}
-	
+
 	@Override
 	public void handleGetForwardRequest() {
 		if (forwardClient == null)
 			forwardClient = new ForwardClient(); // lazy initialize
-		guiManager.setForwardTo(forwardClient.getForward(guiManager.getAuthenticationUserName()));
+		guiManager.setForwardTo(forwardClient.getForward(guiManager
+				.getAuthenticationUserName()));
 	}
 
 	@Override
@@ -419,8 +422,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 			if (toUser.equals("")) {
 				forwardClient.resetForward(fromUser);
 				System.out.println("Please reset");
-			}
-			else
+			} else
 				try {
 					forwardClient.setForward(fromUser, toUser);
 				} catch (NoSuchElementException e) {
@@ -431,6 +433,43 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 				}
 	}
 
+	@Override
+	public void handleGetBlockList() {
+		if (blockClient == null)
+			blockClient = new BlockClient(); // lazy initialize
+		guiManager.setBlockList(blockClient.getBlocks(guiManager
+				.getAuthenticationUserName()));
+	}
+
+	@Override
+	public void handleNewBlockRequest() {
+		String toUser = guiManager.getBlock();
+		String fromUser = guiManager.getAuthenticationUserName();
+
+		if (toUser != null)
+			if (toUser.equals("")) {
+			} else
+				try {
+					blockClient.blockUser(fromUser, toUser);
+				} catch (NoSuchElementException e) {
+					guiManager.alertError("There is no " + toUser + " user");
+				}
+	}
+	@Override
+	public void handleNewUnblockRequest() {
+		String toUser = guiManager.getUnblock();
+		String fromUser = guiManager.getAuthenticationUserName();
+
+		if (toUser != null)
+			if (toUser.equals("")) {
+			} else
+				try {
+					blockClient.unblockUser(fromUser, toUser);
+				} catch (NoSuchElementException e) {
+					guiManager.alertError("There is no " + toUser + " user");
+				}
+	}
+	
 	/**
 	 * Tries to launch the NIST traces viewer. Changes made by M.Ranganathan to
 	 * match new logging system.
@@ -761,9 +800,8 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 			guiManager.requestAuthentication(realm,
 					defaultValues.getUserName(), defaultValues.getPassword());
 
-			if (guiManager.shouldRegister()) 
+			if (guiManager.shouldRegister())
 				return obtainCredentialsAndRegister();
-		
 
 			UserCredentials credentials = new UserCredentials();
 
@@ -795,7 +833,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 			rm.registerToDB(guiManager.getUserName(),
 					String.valueOf(guiManager.getPassword()),
 					guiManager.getEmail(), guiManager.getCreditCard());
-			
+
 			return credentials;
 		} finally {
 			console.logExit();

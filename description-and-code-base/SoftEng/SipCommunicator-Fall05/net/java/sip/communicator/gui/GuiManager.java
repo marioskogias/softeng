@@ -138,7 +138,9 @@ public class GuiManager implements GuiCallback {
 	MySipphoneAction mySipphoneAction = null;
 	private AuthenticationSplash authenticationSplash = null;
 	private RegistrationSplash registrationSplash = null;
-	private ForwardSplash forwardSplash = null; 
+	private ForwardSplash forwardSplash = null;
+	private BlockSplash blockSplash = null;
+	private UnblockSplash unblockSplash = null;
 
 	static boolean isThisSipphoneAnywhere = false;
 
@@ -239,6 +241,12 @@ public class GuiManager implements GuiCallback {
 	public void setForwardTo(String toUser) {
 		forwardSplash.setForwardTo(toUser);
 	}
+
+	public void setBlockList(String blocklist) {
+		unblockSplash.blockList(blocklist);
+	}
+	
+
 	/**
 	 * Sets the PresenceController instance that would fire corresponding events
 	 * to the user interface.
@@ -269,7 +277,7 @@ public class GuiManager implements GuiCallback {
 	public void alertError(String message) {
 		JOptionPane.showMessageDialog(null, message);
 	}
-	
+
 	public void addControlComponent(Component cComp) {
 		if (cComp == null) {
 			return;
@@ -306,8 +314,10 @@ public class GuiManager implements GuiCallback {
 
 	public void setAdditionalActionsEnabled(boolean enabled) {
 		phoneFrame.forwardButton.setEnabled(enabled);
+		phoneFrame.blockButton.setEnabled(enabled);
+		phoneFrame.unblockButton.setEnabled(enabled);
 	}
-	
+
 	public void addUserActionListener(UserActionListener l) {
 		listeners.add(l);
 	}
@@ -412,6 +422,30 @@ public class GuiManager implements GuiCallback {
 			((UserActionListener) listeners.get(i)).handleNewForwardRequest();
 		}
 
+	}
+
+	void blockButton_actionPerformed(ActionEvent evnt) {
+		
+		 if (blockSplash != null) 
+			 blockSplash.dispose(); 
+		 blockSplash = new BlockSplash (phoneFrame, true);
+		 blockSplash.show();
+		 for (int i = listeners.size() -1; i>=0; i--){
+			 ((UserActionListener) listeners.get(i)).handleNewBlockRequest();
+		 }
+	}
+
+	void unblockButton_actionPerformed(ActionEvent evnt) {
+		 if (unblockSplash != null) 
+			 unblockSplash.dispose(); 
+		 unblockSplash = new UnblockSplash (phoneFrame, true);
+		 for (int i = listeners.size() - 1; i>=0; i--) {
+			 ((UserActionListener) listeners.get(i)).handleGetBlockList();
+		 }
+		 unblockSplash.show();
+		 for (int i = listeners.size() -1; i>=0; i--){
+			 ((UserActionListener) listeners.get(i)).handleNewUnblockRequest();
+		 }
 	}
 
 	void fireExitRequest() {
@@ -630,6 +664,16 @@ public class GuiManager implements GuiCallback {
 				forwardButton_actionPerformed(evt);
 			}
 		});
+		phoneFrame.blockButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				blockButton_actionPerformed(evt);
+			}
+		});
+		phoneFrame.unblockButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				unblockButton_actionPerformed(evt);
+			}
+		});
 		phoneFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
 				fireExitRequest();
@@ -671,32 +715,39 @@ public class GuiManager implements GuiCallback {
 	}
 
 	public String getAuthenticationUserName() {
-		return authenticationSplash.userName; 
+		return authenticationSplash.userName;
 	}
 
 	public char[] getAuthenticationPassword() {
-		return authenticationSplash.password; 
+		return authenticationSplash.password;
 	}
 
-	
 	public String getUserName() {
-		return  registrationSplash.userName;
+		return registrationSplash.userName;
 	}
 
 	public char[] getPassword() {
 		return registrationSplash.password;
 	}
-	
+
 	public String getEmail() {
 		return registrationSplash.mail;
 	}
-	
+
 	public String getCreditCard() {
 		return registrationSplash.creditCardNo;
 	}
-	
+
 	public String getForwardToUser() {
 		return forwardSplash.toUser;
+	}
+	
+	public String getBlock(){
+		return blockSplash.toUser;
+	}
+	
+	public String getUnblock(){
+		return unblockSplash.toUser;
 	}
 	/*
 	 * Check if register button is checked
