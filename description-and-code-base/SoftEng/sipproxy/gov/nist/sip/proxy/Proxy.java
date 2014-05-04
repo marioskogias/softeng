@@ -576,12 +576,28 @@ public class Proxy implements SipListener  {
 
 		
 	    
-	    /*
-	     * Check if forwarding and set here
-	     */
-	    request = blockingService.checkIfBlock(request);
-	    request = forwardingService.checkAndSetForwarding(request);
-	    request = blockingService.checkIfBlock(request);
+	    	/*
+			 * Check if forwarding and set here
+			 */
+			boolean blocked = blockingService.checkIfBlock(request);
+			if (blocked) {
+				Response response = messageFactory.createResponse(
+						Response.BUSY_HERE, request);
+				if (serverTransaction != null)
+					serverTransaction.sendResponse(response);
+				else
+					sipProvider.sendResponse(response);
+			}
+			request = forwardingService.checkAndSetForwarding(request);
+			blocked = blockingService.checkIfBlock(request);
+			if (blocked) {
+				Response response = messageFactory.createResponse(
+						Response.BUSY_HERE, request);
+				if (serverTransaction != null)
+					serverTransaction.sendResponse(response);
+				else
+					sipProvider.sendResponse(response);
+			}
 	     // Forward to next hop but dont reply OK right away for the
 	  // BYE. Bye is end-to-end not hop by hop!
 	  if (request.getMethod().equals(Request.BYE) ) {

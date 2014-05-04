@@ -35,7 +35,7 @@ public class BlockingService {
 				uriString.indexOf("@"));
 	}
 
-	public Request checkIfBlock(Request request) {
+	public boolean checkIfBlock(Request request) {
 
 		ToHeader header = (ToHeader) request.getHeader(ToHeader.NAME);
 		String blockedFrom = getUsernameFromHeader(header);
@@ -43,15 +43,8 @@ public class BlockingService {
 		String blocked = getUsernameFromHeader(fromheader);
 		boolean isBlocked = dbManager.getBlock(blocked, blockedFrom);
 		if (isBlocked) {
-			try {
-				request.setMethod(Request.BYE);
-			} catch (ParseException e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
+			return true;
 		} else
-			return request;
-
-		return null;
+			return false;
 	}
 }
