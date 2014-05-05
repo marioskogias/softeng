@@ -47,7 +47,9 @@ public class BillingDB {
 			connectIfNeeded();
 			String sql = "UPDATE billing SET duration=? WHERE id=? LIMIT 1;";
 			PreparedStatement statement = mConnection.prepareStatement(sql);
-			long duration = (System.currentTimeMillis() - startTime) / 1000 / 60; 
+			// the duration is in minutes and round up
+			long duration = (long) Math.ceil((System.currentTimeMillis() - startTime) / (double) 1000 / 60); 
+			System.out.println("The duration is "+ Long.toString(duration));
 			statement.setLong(1, duration);
 			statement.setLong(2, id);
 			int result = statement.executeUpdate();
