@@ -1,19 +1,21 @@
 package gov.nist.sip.proxy;
 
 
-import java.util.*;
-
-import javax.sip.*;
-import javax.sip.message.*;
-import javax.sip.header.*;
-import javax.sip.address.*;
-
-import gov.nist.sip.proxy.registrar.*;
+import gov.nist.sip.proxy.additionalServices.BillingService;
+import gov.nist.sip.proxy.additionalServices.ForwardingService;
+import gov.nist.sip.proxy.authentication.Authentication;
+import gov.nist.sip.proxy.authentication.AuthenticationMethod;
+import gov.nist.sip.proxy.presenceserver.PresenceServer;
+import gov.nist.sip.proxy.registrar.Registrar;
+import gov.nist.sip.proxy.router.ProxyHop;
 
 import java.text.ParseException;
-import java.io.File;
-import java.io.FileReader;
-import java.io.IOException;
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.ListIterator;
+import java.util.Properties;
+import java.util.Timer;
+import java.util.Vector;
 
 import gov.nist.sip.proxy.additionalServices.ForwardingService;
 import gov.nist.sip.proxy.additionalServices.BlockingService;
@@ -21,6 +23,34 @@ import gov.nist.sip.proxy.authentication.*;
 import gov.nist.sip.proxy.presenceserver.*;
 import gov.nist.sip.proxy.router.*;
 import gov.nist.javax.sip.header.*;
+import javax.sip.ClientTransaction;
+import javax.sip.Dialog;
+import javax.sip.ListeningPoint;
+import javax.sip.RequestEvent;
+import javax.sip.ResponseEvent;
+import javax.sip.ServerTransaction;
+import javax.sip.SipException;
+import javax.sip.SipFactory;
+import javax.sip.SipListener;
+import javax.sip.SipProvider;
+import javax.sip.SipStack;
+import javax.sip.TimeoutEvent;
+import javax.sip.TransactionAlreadyExistsException;
+import javax.sip.address.Address;
+import javax.sip.address.AddressFactory;
+import javax.sip.address.Router;
+import javax.sip.address.SipURI;
+import javax.sip.address.URI;
+import javax.sip.header.CSeqHeader;
+import javax.sip.header.ContactHeader;
+import javax.sip.header.FromHeader;
+import javax.sip.header.HeaderFactory;
+import javax.sip.header.RouteHeader;
+import javax.sip.header.ToHeader;
+import javax.sip.header.ViaHeader;
+import javax.sip.message.MessageFactory;
+import javax.sip.message.Request;
+import javax.sip.message.Response;
 
 //ifdef SIMULATION
 /*
@@ -61,6 +91,7 @@ public class Proxy implements SipListener  {
 
     protected ForwardingService forwardingService;
     protected BlockingService blockingService;
+    protected BillingService mBillingService;
     
     public RequestForwarding getRequestForwarding() {
         return requestForwarding;
@@ -156,6 +187,7 @@ public class Proxy implements SipListener  {
                     responseForwarding=new ResponseForwarding(this);
                     forwardingService = new ForwardingService(this);
                     blockingService = new BlockingService(this);
+                    mBillingService = new BillingService();
                 }
             }
             catch (Exception ex) {
@@ -245,6 +277,7 @@ public class Proxy implements SipListener  {
                     " targeted for the proxy, we ignore it");
                     return;
                 }
+                mBillingService.startBilling(request);
             }
             
            
@@ -609,6 +642,7 @@ public class Proxy implements SipListener  {
 			("Proxy, null server transactin for BYE");
 		  return;
 		}
+	    mBillingService.stopBilling(request);
 		Dialog d = serverTransaction.getDialog();
 		TransactionsMapping transactionsMapping = 
 			(TransactionsMapping) d.getApplicationData();
