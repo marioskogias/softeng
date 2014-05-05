@@ -160,8 +160,8 @@ class PhoneFrame
         this.getContentPane().setLayout(borderLayout1);
         splitPane.setOrientation(JSplitPane.VERTICAL_SPLIT);
         splitPane.setBorder(null);
-        splitPane.setMinimumSize(new Dimension(260, 300));
-        splitPane.setPreferredSize(new Dimension(260, 300));
+        splitPane.setMinimumSize(new Dimension(400, 300));
+        splitPane.setPreferredSize(new Dimension(400, 300));
 //    splitPane.setLastDividerLocation(600);
 //        splitPane.setLastDividerLocation(400);
         splitPane.setOneTouchExpandable(true);

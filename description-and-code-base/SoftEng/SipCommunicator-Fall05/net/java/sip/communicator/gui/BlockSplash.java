@@ -77,7 +77,7 @@ public class BlockSplash extends JDialog {
 		// have a description
 		getAccessibleContext().setAccessibleDescription("Unblock Splash");
 
-		String authPromptLabelValue = "Please enter the username to unblock";
+		String authPromptLabelValue = "Please enter the username to block or unblock";
 
 		JLabel splashLabel = new JLabel(authPromptLabelValue);
 		splashLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
