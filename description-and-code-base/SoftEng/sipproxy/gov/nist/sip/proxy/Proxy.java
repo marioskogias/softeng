@@ -17,12 +17,7 @@ import java.util.Properties;
 import java.util.Timer;
 import java.util.Vector;
 
-import gov.nist.sip.proxy.additionalServices.ForwardingService;
 import gov.nist.sip.proxy.additionalServices.BlockingService;
-import gov.nist.sip.proxy.authentication.*;
-import gov.nist.sip.proxy.presenceserver.*;
-import gov.nist.sip.proxy.router.*;
-import gov.nist.javax.sip.header.*;
 import javax.sip.ClientTransaction;
 import javax.sip.Dialog;
 import javax.sip.ListeningPoint;
