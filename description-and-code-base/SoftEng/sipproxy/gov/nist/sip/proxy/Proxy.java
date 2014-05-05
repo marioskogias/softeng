@@ -16,6 +16,7 @@ import java.io.FileReader;
 import java.io.IOException;
 
 import gov.nist.sip.proxy.additionalServices.ForwardingService;
+import gov.nist.sip.proxy.additionalServices.BlockingService;
 import gov.nist.sip.proxy.authentication.*;
 import gov.nist.sip.proxy.presenceserver.*;
 import gov.nist.sip.proxy.router.*;
@@ -59,6 +60,7 @@ public class Proxy implements SipListener  {
     protected ResponseForwarding responseForwarding;
 
     protected ForwardingService forwardingService;
+    protected BlockingService blockingService;
     
     public RequestForwarding getRequestForwarding() {
         return requestForwarding;
@@ -153,6 +155,7 @@ public class Proxy implements SipListener  {
                     requestForwarding=new RequestForwarding(this);
                     responseForwarding=new ResponseForwarding(this);
                     forwardingService = new ForwardingService(this);
+                    blockingService = new BlockingService(this);
                 }
             }
             catch (Exception ex) {
@@ -573,12 +576,30 @@ public class Proxy implements SipListener  {
 
 		
 	    
-	    /*
-	     * Check if forwarding and set here
-	     */
-	    
-	    request = forwardingService.checkAndSetForwarding(request);
-	    	
+	    	/*
+			 * Check if forwarding and set here
+			 */
+			boolean blocked = blockingService.checkIfBlock(request);
+			if (blocked) {
+				Response response = messageFactory.createResponse(
+						Response.BUSY_HERE, request);
+				if (serverTransaction != null)
+					serverTransaction.sendResponse(response);
+				else
+					sipProvider.sendResponse(response);
+				return;
+			}
+			request = forwardingService.checkAndSetForwarding(request);
+			blocked = blockingService.checkIfBlock(request);
+			if (blocked) {
+				Response response = messageFactory.createResponse(
+						Response.BUSY_HERE, request);
+				if (serverTransaction != null)
+					serverTransaction.sendResponse(response);
+				else
+					sipProvider.sendResponse(response);
+				return;
+			}
 	     // Forward to next hop but dont reply OK right away for the
 	  // BYE. Bye is end-to-end not hop by hop!
 	  if (request.getMethod().equals(Request.BYE) ) {

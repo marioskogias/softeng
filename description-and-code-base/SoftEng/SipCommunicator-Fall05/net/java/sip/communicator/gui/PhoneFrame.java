@@ -117,6 +117,7 @@ class PhoneFrame
     JPanel dialPanel = new JPanel();
     JButton dialButton = new JButton();
     JComboBox contactBox = new JComboBox();
+	JButton blockButton = new JButton();
 
     public PhoneFrame(GuiManager guiManCallback) //throws HeadlessException
     {
@@ -184,6 +185,9 @@ class PhoneFrame
         forwardButton.setEnabled(false);
         forwardButton.setMnemonic('H');
         forwardButton.setText("Forward");
+        blockButton.setEnabled(false);
+        blockButton.setMnemonic('B');;
+        blockButton.setText("Block");
         callControlButtons.setLayout(gridLayout1);
         gridLayout1.setHgap(10);
         gridLayout1.setVgap(10);
@@ -226,6 +230,7 @@ class PhoneFrame
         callControlButtons.add(answerButton, null);
         callControlButtons.add(hangupButton, null);
         callControlButtons.add(forwardButton, null);
+        callControlButtons.add(blockButton, null);
         controlPanel.add(participantsScroll,  BorderLayout.CENTER);
         participantsScroll.setViewportView(participantsTable);
         statusPanel.add(registrationLabel, BorderLayout.WEST);

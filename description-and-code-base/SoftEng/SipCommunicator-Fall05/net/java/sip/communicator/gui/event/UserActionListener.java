@@ -83,6 +83,10 @@ public interface UserActionListener
     
     public void handleNewForwardRequest();
     
+    public void handleGetBlockList();
+    
+    public void handleNewBlockRequest();
+    
 /** @todo remove after testing */
 //    public void handlePropertiesSaveRequest();
 
