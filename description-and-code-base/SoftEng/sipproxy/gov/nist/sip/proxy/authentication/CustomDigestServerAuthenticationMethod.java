@@ -27,7 +27,7 @@ public class CustomDigestServerAuthenticationMethod implements
 	private Hashtable passwordTable;
 	private MessageDigest messageDigest;
 	private RegisterDB dbManager;
-
+	private String fileName = null;
 	/**
 	 * Default constructor.
 	 */
@@ -55,7 +55,7 @@ public class CustomDigestServerAuthenticationMethod implements
 		try {
 			XMLAuthenticationParser parser = new XMLAuthenticationParser(
 					pwFileName);
-
+			fileName = pwFileName;
 			String def = parser.getRealm();
 			if (def != null)
 				DEFAULT_REALM = def;
@@ -96,11 +96,10 @@ public class CustomDigestServerAuthenticationMethod implements
 								+ "Error during parsing the passwords file!");
 
 			// get users from db second
-			HashMap<String, String> temp = dbManager.getUserPasswords(def);
+			HashMap<String, String> temp = dbManager.getUserPasswords(DEFAULT_REALM);
 			Iterator it = temp.entrySet().iterator();
 			while (it.hasNext()) {
 				Map.Entry pairs = (Map.Entry) it.next();
-				System.out.println(pairs.getKey());
 				passwordTable.put(pairs.getKey(), pairs.getValue());
 
 			}
@@ -212,6 +211,13 @@ public class CustomDigestServerAuthenticationMethod implements
 					.println("DEBUG, DigestAuthenticateMethod, doAuthenticate(): "
 							+ "ERROR: password not found for the user: "
 							+ username + "@" + realm);
+			/*
+			 * Check if the username is in the db but not in the file
+			 */
+			if (dbManager.checkRegister(username)) {
+				this.initialize(fileName);
+				return this.doAuthenticate(user, authHeader, request);
+			}
 			return false;
 		}
 
