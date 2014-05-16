@@ -39,7 +39,7 @@ enable="false"
 <AUTHENTICATION
 enable="false"
 method="digest"
-class_file="gov.nist.sip.proxy.authentication.DigestServerAuthenticationMethod"
+class_file="gov.nist.sip.proxy.authentication.CustomDigestServerAuthenticationMethod"
 passwords_file="./configuration/passwords.xml"
 />
 

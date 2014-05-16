@@ -1,14 +1,17 @@
 package gov.nist.sip.db;
 
 import java.sql.*;
+import java.util.HashMap;
 
 public class RegisterDB {
 
 	private ParseXMLCredentials dbCred;
+	
+	private String REAML = "192.168.1.6:4000";
 
 	Connection conn = null;
 	Statement stmt = null;
-	
+
 	public RegisterDB() {
 		dbCred = new ParseXMLCredentials();
 		register();
@@ -27,12 +30,11 @@ public class RegisterDB {
 			e.printStackTrace();
 		}
 	}
-	
+
 	public boolean checkRegister(String username) {
 
-		System.out.println(dbCred.getUrl());
 		try {
-			
+
 			if (conn == null)
 				register();
 			stmt = conn.createStatement();
@@ -44,8 +46,28 @@ public class RegisterDB {
 				return true;
 		} catch (SQLException e) {
 			e.printStackTrace();
-			System.exit(0);
 		}
 		return false;
+	}
+
+	public HashMap<String, String> getUserPasswords(String realm) {
+
+		HashMap<String, String> res = new HashMap<String, String>();
+		ResultSet rs;
+		try {
+			if (conn == null)
+				register();
+			stmt = conn.createStatement();
+			String sql;
+			sql = "SELECT username, password FROM users ";
+			rs = stmt.executeQuery(sql);
+			while (rs.next()) {
+				res.put(rs.getString("username") + "@" + realm, rs.getString("password") );
+			}
+		} catch (SQLException e) {
+			e.printStackTrace();
+		}
+		return res;
+
 	}
 }
