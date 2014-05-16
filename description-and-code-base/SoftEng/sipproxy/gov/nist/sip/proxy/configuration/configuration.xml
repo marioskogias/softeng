@@ -2,9 +2,10 @@
 <CONFIGURATION> 
 	<SIP_STACK 
 stack_name="nist-proxy"
-stack_IP_address="127.0.0.1"
+stack_IP_address="192.168.1.6"
 router_path="gov.nist.sip.proxy.router.ProxyRouter"
 max_connections="20"
+max_server_transactions="20"
 thread_pool_size="20"
     >       
 
@@ -39,9 +40,9 @@ enable="true"
 />
 
 <AUTHENTICATION
-enable="false"
+enable="true"
 method="digest"
-class_file="gov.nist.sip.proxy.authentication.DigestServerAuthenticationMethod"
+class_file="gov.nist.sip.proxy.authentication.CustomDigestServerAuthenticationMethod"
 passwords_file="./gov/nist/sip/proxy/configuration/passwords.xml"
 />
 
