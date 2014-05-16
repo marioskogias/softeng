@@ -6,7 +6,6 @@
 
 package gov.nist.sip.proxy.registrar;
 
-import gov.nist.sip.db.RegisterDB;
 import gov.nist.sip.proxy.*;
 
 import java.io.FileWriter;
@@ -49,7 +48,6 @@ public class Registrar
 	protected RegistrationsTable registrationsTable;
 	protected RegistrationsList gui;
 	protected Proxy proxy;
-	protected RegisterDB dbManager;
 	// in seconds
 	public static int EXPIRES_TIME_MIN = 1;
 	public static int EXPIRES_TIME_MAX = 3600;
@@ -63,7 +61,6 @@ public class Registrar
 	public Registrar(Proxy proxy) throws RemoteException {
 		this.proxy = proxy;
 		registrationsTable = new RegistrationsTable(this);
-		this.dbManager = new RegisterDB();
 	}
 
 	public void registerToProxies() {
@@ -281,21 +278,6 @@ public class Registrar
 				return;
 			}
 
-			/*
-			 * Before the sip registration standard process we have to check if
-			 * the user is already in the database. If not response NOT_FOUND
-			 */
-			String username = key.split("@")[0].split(":")[1];
-			if (!dbManager.checkRegister(username)) {
-				Response response = messageFactory.createResponse(
-						Response.NOT_FOUND, request);
-				if (serverTransaction != null)
-					serverTransaction.sendResponse(response);
-				else
-					sipProvider.sendResponse(response);
-				return;
-				
-			}
 			// RFC 3261: 10.3:
 			/*
 			 * 6. The registrar checks whether the request contains the Contact

@@ -7,13 +7,18 @@
 package gov.nist.sip.proxy;
 
 import java.util.*;
+
 import javax.sip.*;
 import javax.sip.message.*;
 import javax.sip.header.*;
 import javax.sip.address.*;
+
 import java.io.IOException;
+
 import gov.nist.sip.proxy.authentication.*;
 import gov.nist.sip.proxy.presenceserver.*;
+import gov.nist.sip.db.RegisterDB;
+
 /**
  *  RFC 3261 16.3 Request Validation:
  *  Before an element can proxy a request, it MUST verify the message's
@@ -36,11 +41,13 @@ public class RequestValidation {
     
     protected Proxy proxy;
     private boolean VALIDATED;
-    
+    protected RegisterDB dbManager;
+ 
     /** Creates a new instance of RequestValidation */
     public RequestValidation(Proxy proxy) {
         this.proxy=proxy;
         VALIDATED=false;
+        this.dbManager = new RegisterDB();
     }
     
     public boolean validateRequest(SipProvider sipProvider,Request request,ServerTransaction st) {
@@ -97,6 +104,31 @@ public class RequestValidation {
                return false;
            }
            
+           /*
+            * If register request check if user in database
+            * if not return NOT_FOUND
+            */
+			if (request.getMethod().equals(Request.REGISTER)) {
+
+				// get name from FromHeader
+				String key = ((ToHeader) request.getHeader(ToHeader.NAME))
+						.getAddress().toString();
+				System.out.println("\n\n\nThe key is " + key);
+				String username = key.split("@")[0].split(":")[1];
+				System.out.println("\n\n\nThe username is " + username);
+
+				if (!dbManager.checkRegister(username)) {
+					System.out.println("\nUser not found\n");
+					Response response = messageFactory.createResponse(
+							Response.NOT_FOUND, request);
+					if (serverTransaction != null)
+						serverTransaction.sendResponse(response);
+					else
+						sipProvider.sendResponse(response);
+					return false;
+
+				}
+			}
            if ( !checkProxyRequire(request) ) {
                 // Let's return a 420 Bad Extension
                Response response=messageFactory.createResponse
