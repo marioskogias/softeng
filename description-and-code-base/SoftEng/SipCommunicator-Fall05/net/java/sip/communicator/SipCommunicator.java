@@ -437,34 +437,39 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 	public void handleGetBlockList() {
 		if (blockClient == null)
 			blockClient = new BlockClient(); // lazy initialize
-		guiManager.setBlockList(blockClient.getBlocks(guiManager
-				.getAuthenticationUserName()));
+		String fromUser = guiManager.getAuthenticationUserName();
+		if (fromUser == null){
+			fromUser=guiManager.getUserName();
+		}
+		guiManager.setBlockList(blockClient.getBlocks(fromUser));
 	}
-
 
 	@Override
 	public void handleNewBlockRequest() {
 		String toUser = guiManager.getBlock();
 		String fromUser = guiManager.getAuthenticationUserName();
 		String action = guiManager.getAction();
-		if (toUser != null)
-			if (toUser.equals("")) {
-			} else {
-				if (action == "block"){
-					try {
-						blockClient.blockUser(fromUser, toUser);
-					} catch (NoSuchElementException e) {
-						guiManager.alertError("There is no " + toUser + " user");
-					}
+		if (fromUser == null) {
+			fromUser = guiManager.getUserName();
+			if (toUser != null)
+				if (toUser.equals("")) {
+				} else {
+					if (action == "block") {
+						try {
+							blockClient.blockUser(fromUser, toUser);
+						} catch (NoSuchElementException e) {
+							guiManager.alertError("There is no " + toUser
+									+ " user");
+						}
+					} else
+						try {
+							blockClient.unblockUser(fromUser, toUser);
+						} catch (NoSuchElementException e) {
+							guiManager.alertError("There is no " + toUser
+									+ " user");
+						}
 				}
-				else
-					try {
-						blockClient.unblockUser(fromUser, toUser);
-					} catch (NoSuchElementException e) {
-						guiManager
-								.alertError("There is no " + toUser + " user");
-					}
-			}
+		}
 	}
 
 	/**
