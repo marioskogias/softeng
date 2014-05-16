@@ -449,7 +449,8 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 		String toUser = guiManager.getBlock();
 		String fromUser = guiManager.getAuthenticationUserName();
 		String action = guiManager.getAction();
-		if (fromUser == null) {
+		
+		if (fromUser == null) 
 			fromUser = guiManager.getUserName();
 			if (toUser != null)
 				if (toUser.equals("")) {
@@ -469,7 +470,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 									+ " user");
 						}
 				}
-		}
+		
 	}
 
 	/**
