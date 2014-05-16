@@ -1,0 +1,6 @@
+.DS_Store
+*.class
+*.txt
+.metadata
+.project
+.DS_Store
