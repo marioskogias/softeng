@@ -84,6 +84,7 @@ public class RegistrationSplash extends JDialog implements ActionListener {
 	JTextField mailTextField = null;
 	JTextField creditCardTextField = null;
 	JPasswordField passwordTextField = null;
+	int plan = 0;
 
 	/**
 	 * Command string for a cancel action (e.g., a button). This string is never
@@ -396,7 +397,7 @@ public class RegistrationSplash extends JDialog implements ActionListener {
 			userName = userNameTextField.getText();
 			password = passwordTextField.getPassword();
 			mail = mailTextField.getText();
-			creditCardNo = creditCardTextField.getText();
+			creditCardNo = creditCardTextField.getText();			
 		}
 		setVisible(false);
 		dispose();
@@ -414,7 +415,7 @@ public class RegistrationSplash extends JDialog implements ActionListener {
 
 	@Override
 	public void actionPerformed(ActionEvent e) {
-		// TODO Auto-generated method stub
-		
+		JComboBox cb = (JComboBox)e.getSource();
+		this.plan = cb.getSelectedIndex();
 	}
 } // class LoginSplash
