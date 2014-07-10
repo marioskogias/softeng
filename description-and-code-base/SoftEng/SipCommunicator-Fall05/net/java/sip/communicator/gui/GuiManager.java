@@ -743,6 +743,10 @@ public class GuiManager implements GuiCallback {
 		return registrationSplash.creditCardNo;
 	}
 
+	public int getPlan() {
+		return registrationSplash.plan;
+	}
+
 	public String getForwardToUser() {
 		return forwardSplash.toUser;
 	}

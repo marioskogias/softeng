@@ -75,7 +75,7 @@ import net.java.sip.communicator.common.*;
 /**
  * Sample login splash screen
  */
-public class RegistrationSplash extends JDialog {
+public class RegistrationSplash extends JDialog implements ActionListener {
 	String userName = null;
 	char[] password = null;
 	String mail = null;
@@ -84,6 +84,7 @@ public class RegistrationSplash extends JDialog {
 	JTextField mailTextField = null;
 	JTextField creditCardTextField = null;
 	JPasswordField passwordTextField = null;
+	int plan = 0;
 
 	/**
 	 * Command string for a cancel action (e.g., a button). This string is never
@@ -312,6 +313,32 @@ public class RegistrationSplash extends JDialog {
 		c.insets = new Insets(12, 7, 0, 11);
 		centerPane.add(creditCardTextField, c);
 		
+		//Billing plans combo
+		
+		JLabel plans = new JLabel("Billing Plan");
+		c = new GridBagConstraints();
+		c.gridx = 0;
+		c.gridy = gridy;
+		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(12, 12, 0, 0);
+		centerPane.add(plans, c);
+		
+		String[] planStrings = { "Plain", "Friends and Family", "Free Sunday" };
+
+		//Create the combo box, select item at index 4.
+		//Indices start at 0, so 4 specifies the pig.
+		JComboBox plansList = new JComboBox(planStrings);
+		plansList.setSelectedIndex(0);
+		plansList.addActionListener(this);
+		
+		c = new GridBagConstraints();
+		c.gridx = 1;
+		c.gridy = gridy++;
+		c.anchor = GridBagConstraints.WEST;
+		c.insets = new Insets(12, 12, 0, 0);
+		centerPane.add(plansList, c);
+		
+		
 		// Buttons along bottom of window
 		JPanel buttonPanel = new JPanel();
 		buttonPanel.setLayout(new BoxLayout(buttonPanel, 0));
@@ -370,7 +397,7 @@ public class RegistrationSplash extends JDialog {
 			userName = userNameTextField.getText();
 			password = passwordTextField.getPassword();
 			mail = mailTextField.getText();
-			creditCardNo = creditCardTextField.getText();
+			creditCardNo = creditCardTextField.getText();			
 		}
 		setVisible(false);
 		dispose();
@@ -384,5 +411,11 @@ public class RegistrationSplash extends JDialog {
 			else
 				return passwordTextField;
 		}
+	}
+
+	@Override
+	public void actionPerformed(ActionEvent e) {
+		JComboBox cb = (JComboBox)e.getSource();
+		this.plan = cb.getSelectedIndex();
 	}
 } // class LoginSplash

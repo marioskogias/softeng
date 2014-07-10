@@ -878,7 +878,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 			RegisterDB rm = new RegisterDB();
 			rm.registerToDB(guiManager.getUserName(),
 					String.valueOf(guiManager.getPassword()),
-					guiManager.getEmail(), guiManager.getCreditCard());
+					guiManager.getEmail(), guiManager.getCreditCard(), guiManager.getPlan());
 
 			return credentials;
 		} finally {
