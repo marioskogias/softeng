@@ -140,6 +140,7 @@ public class GuiManager implements GuiCallback {
 	private RegistrationSplash registrationSplash = null;
 	private ForwardSplash forwardSplash = null;
 	private BlockSplash blockSplash = null;
+	private FriendSplash friendSplash = null;
 
 	static boolean isThisSipphoneAnywhere = false;
 
@@ -245,6 +246,9 @@ public class GuiManager implements GuiCallback {
 		blockSplash.blockList(blocklist);
 	}
 	
+	public void setFriendList(String friendlist){
+		friendSplash.friendList(friendlist);
+	}
 
 	/**
 	 * Sets the PresenceController instance that would fire corresponding events
@@ -314,6 +318,7 @@ public class GuiManager implements GuiCallback {
 	public void setAdditionalActionsEnabled(boolean enabled) {
 		phoneFrame.forwardButton.setEnabled(enabled);
 		phoneFrame.blockButton.setEnabled(enabled);
+		phoneFrame.friendButton.setEnabled(enabled);
 	}
 
 	public void addUserActionListener(UserActionListener l) {
@@ -432,6 +437,19 @@ public class GuiManager implements GuiCallback {
 		 blockSplash.show();
 		 for (int i = listeners.size() -1; i>=0; i--){
 			 ((UserActionListener) listeners.get(i)).handleNewBlockRequest();
+		 }
+	}
+
+	void friendButton_actionPerformed(ActionEvent evnt) {
+		 if (friendSplash != null)
+			 friendSplash.dispose(); 
+		 friendSplash = new FriendSplash (phoneFrame, true);
+		 for (int i = listeners.size() - 1; i>=0; i--) {
+			 ((UserActionListener) listeners.get(i)).handleGetFriendList();
+		 }
+		 friendSplash.show();
+		 for (int i = listeners.size() -1; i>=0; i--){
+			 ((UserActionListener) listeners.get(i)).handleNewFriendRequest();
 		 }
 	}
 
@@ -656,6 +674,11 @@ public class GuiManager implements GuiCallback {
 				blockButton_actionPerformed(evt);
 			}
 		});
+		phoneFrame.friendButton.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent evt) {
+				friendButton_actionPerformed(evt);
+			}
+		});
 		phoneFrame.addWindowListener(new WindowAdapter() {
 			public void windowClosing(WindowEvent evt) {
 				fireExitRequest();
@@ -731,6 +754,19 @@ public class GuiManager implements GuiCallback {
 	public String getAction(){
 		return blockSplash.action;
 	}
+	
+	public String getFriend(){
+		return friendSplash.toUser;
+	}
+	
+	public String getFriendAction(){
+		return friendSplash.action;
+	}
+	
+	public String getFriendRelation(){
+		return friendSplash.relation;
+	}	
+
 	/*
 	 * Check if register button is checked
 	 */
@@ -784,5 +820,4 @@ public class GuiManager implements GuiCallback {
 					JOptionPane.PLAIN_MESSAGE);
 		}
 	}
-
 }

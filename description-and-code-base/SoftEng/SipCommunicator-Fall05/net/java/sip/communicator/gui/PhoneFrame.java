@@ -118,7 +118,9 @@ class PhoneFrame
     JButton dialButton = new JButton();
     JComboBox contactBox = new JComboBox();
 	JButton blockButton = new JButton();
-
+	JButton friendButton = new JButton();
+	
+	
     public PhoneFrame(GuiManager guiManCallback) //throws HeadlessException
     {
         try {
@@ -188,6 +190,9 @@ class PhoneFrame
         blockButton.setEnabled(false);
         blockButton.setMnemonic('B');;
         blockButton.setText("Block");
+        friendButton.setText("Friends");
+        friendButton.setEnabled(false);
+        friendButton.setMnemonic('L');
         callControlButtons.setLayout(gridLayout1);
         gridLayout1.setHgap(10);
         gridLayout1.setVgap(10);
@@ -231,6 +236,7 @@ class PhoneFrame
         callControlButtons.add(hangupButton, null);
         callControlButtons.add(forwardButton, null);
         callControlButtons.add(blockButton, null);
+        callControlButtons.add(friendButton, null);
         controlPanel.add(participantsScroll,  BorderLayout.CENTER);
         participantsScroll.setViewportView(participantsTable);
         statusPanel.add(registrationLabel, BorderLayout.WEST);

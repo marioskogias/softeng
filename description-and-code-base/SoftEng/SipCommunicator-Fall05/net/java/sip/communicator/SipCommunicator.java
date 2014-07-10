@@ -65,6 +65,7 @@ import java.awt.*;
 
 import net.java.sip.communicator.additionalServices.BlockClient;
 import net.java.sip.communicator.additionalServices.ForwardClient;
+import net.java.sip.communicator.additionalServices.FriendClient;
 import net.java.sip.communicator.common.*;
 import net.java.sip.communicator.common.Console;
 import net.java.sip.communicator.db.RegisterDB;
@@ -117,6 +118,7 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 	protected PresenceStatusController presenceStatusController = null;
 	protected ForwardClient forwardClient = null;
 	protected BlockClient blockClient = null;
+	protected FriendClient friendClient = null;
 
 	protected Integer unregistrationLock = new Integer(0);
 
@@ -465,6 +467,47 @@ public class SipCommunicator implements MediaListener, UserActionListener,
 					} else
 						try {
 							blockClient.unblockUser(fromUser, toUser);
+						} catch (NoSuchElementException e) {
+							guiManager.alertError("There is no " + toUser
+									+ " user");
+						}
+				}
+		
+	}
+
+	@Override
+	public void handleGetFriendList() {
+		if (friendClient == null)
+			friendClient = new FriendClient(); // lazy initialize
+		String fromUser = guiManager.getAuthenticationUserName();
+		if (fromUser == null){
+			fromUser=guiManager.getUserName();
+		}
+		guiManager.setFriendList(friendClient.getFriends(fromUser));
+	}
+
+	@Override
+	public void handleNewFriendRequest() {
+		String toUser = guiManager.getFriend();
+		String fromUser = guiManager.getAuthenticationUserName();
+		String action = guiManager.getFriendAction();
+		String relation = guiManager.getFriendRelation();
+		
+		if (fromUser == null) 
+			fromUser = guiManager.getUserName();
+			if (toUser != null)
+				if (toUser.equals("")) {
+				} else {
+					if (action == "add") {
+						try {
+							friendClient.addFriend(fromUser, toUser, relation);
+						} catch (NoSuchElementException e) {
+							guiManager.alertError("There is no " + toUser
+									+ " user");
+						}
+					} else
+						try {
+							friendClient.removeFriend(fromUser, toUser);
 						} catch (NoSuchElementException e) {
 							guiManager.alertError("There is no " + toUser
 									+ " user");
