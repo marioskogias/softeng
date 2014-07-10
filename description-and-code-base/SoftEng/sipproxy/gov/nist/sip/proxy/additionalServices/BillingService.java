@@ -17,14 +17,20 @@ public class BillingService {
 	}
 
 	public boolean startBilling(Request request) {
-		HeaderAddress header = (HeaderAddress) request.getHeader(FromHeader.NAME);
+		HeaderAddress header = (HeaderAddress) request
+				.getHeader(FromHeader.NAME);
 		String username = getUsernameFromHeader(header);
 		return mBillingDB.addBillingRecord(username);
 	}
-	
+
 	public boolean stopBilling(Request request) {
-		HeaderAddress header = (HeaderAddress) request.getHeader(FromHeader.NAME);
+		HeaderAddress header = (HeaderAddress) request
+				.getHeader(FromHeader.NAME);
 		String username = getUsernameFromHeader(header);
+		
+		ChargerFactory factory = chooseFactory(request);
+		Charger charger = factory.createCharger();
+		
 		if (mBillingDB.finalizeBillingRecord(username)) {
 			return true;
 		} else {
@@ -32,6 +38,8 @@ public class BillingService {
 			username = getUsernameFromHeader(header);
 			return mBillingDB.finalizeBillingRecord(username);
 		}
+		//remove returns before
+		charger.charge();
 	}
 
 	private String getUsernameFromHeader(HeaderAddress header) {
@@ -39,5 +47,14 @@ public class BillingService {
 		String uriString = uri.toString();
 		return uriString.substring(uriString.indexOf("sip:") + 4,
 				uriString.indexOf("@"));
+	}
+
+	private ChargerFactory chooseFactory(Request request) {
+		/*
+		 * Based on request return the factory you want
+		 * me switch
+		 */
+		
+		return null;
 	}
 }
