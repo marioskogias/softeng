@@ -20,6 +20,22 @@ public class BillingDB {
 		mDatabaseCredentials = new ParseXMLCredentials();
 	}
 
+	public int getPlan(String username){
+		try {
+			connectIfNeeded();
+			String selectSql = "SELECT plan FROM users WHERE username=?;";
+			PreparedStatement statement = mConnection.prepareStatement(selectSql);
+			statement.setString(1, username);
+			statement.setLong(2, -1);
+			ResultSet query = statement.executeQuery();
+			if (!query.first()) {
+				return 0;
+			}
+			return query.getInt("plan");
+		} catch (SQLException e) {
+			throw new RuntimeException("Issue while querying the database", e);
+		}
+	}
 	public boolean addBillingRecord(String username) {
 		try {
 			connectIfNeeded();
@@ -35,11 +51,29 @@ public class BillingDB {
 		}
 	}
 	
-	public boolean finalizeBillingRecord(String username) {
+	public boolean checkRelation(String username, String to_user, String relation){
+		try {
+			connectIfNeeded();
+			String sql =  "SELECT * FROM friendlist where fromuser = ? AND touser = ? AND relation = ?;";
+			PreparedStatement statement = mConnection.prepareStatement(sql);
+			statement.setString(1, username);
+			statement.setString(2, to_user);
+			statement.setString(3, relation);
+			ResultSet rs = statement.executeQuery();
+			if (rs.next()) {
+				return true;
+			} else
+				return false;
+		} catch (SQLException e) {
+			throw new RuntimeException("Issue while inserting into the database", e);
+		}
+	}
+
+	public long finalizeBillingRecord(String username) {
 		try {
 			ResultSet query = getCurrentBillingRecord(username);
 			if (query == null) {
-				return false;
+				return 0;
 			}
 			long id = query.getLong("id");
 			long startTime = query.getLong("start_time");
@@ -53,12 +87,18 @@ public class BillingDB {
 			statement.setLong(1, duration);
 			statement.setLong(2, id);
 			int result = statement.executeUpdate();
-			return result > 0;
+			if (result > 0){
+				return duration;
+			}
+			else {
+				return 0;
+			}
+			
 		} catch (SQLException e) {
 			throw new RuntimeException("Issue while updating the database", e);
 		}
 	}
-	
+		
 	private ResultSet getCurrentBillingRecord(String username) {
 		try {
 			connectIfNeeded();

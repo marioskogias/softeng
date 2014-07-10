@@ -7,6 +7,9 @@ import javax.sip.header.FromHeader;
 import javax.sip.header.HeaderAddress;
 import javax.sip.header.ToHeader;
 import javax.sip.message.Request;
+import gov.nist.sip.proxy.additionalServices.FriendsFactory;
+import gov.nist.sip.proxy.additionalServices.GeneralFactory;
+import gov.nist.sip.proxy.additionalServices.FreeSundayFactory;
 
 public class BillingService {
 
@@ -24,22 +27,29 @@ public class BillingService {
 	}
 
 	public boolean stopBilling(Request request) {
+		boolean successful_charge = false;
 		HeaderAddress header = (HeaderAddress) request
 				.getHeader(FromHeader.NAME);
 		String username = getUsernameFromHeader(header);
-		
-		ChargerFactory factory = chooseFactory(request);
-		Charger charger = factory.createCharger();
-		
-		if (mBillingDB.finalizeBillingRecord(username)) {
-			return true;
+		header = (HeaderAddress) request.getHeader(ToHeader.NAME);
+		String to_user = getUsernameFromHeader(header);
+		long duration = mBillingDB.finalizeBillingRecord(username);
+		if (duration != 0) {
+			ChargerFactory factory = chooseFactory(username);
+			Charger charger = factory.createCharger();
+			charger.charge(username, to_user, duration);
+			successful_charge = true;
 		} else {
-			header = (HeaderAddress) request.getHeader(ToHeader.NAME);
-			username = getUsernameFromHeader(header);
-			return mBillingDB.finalizeBillingRecord(username);
+			String tempname = username;
+			username = to_user;
+			to_user = tempname;
+			duration = mBillingDB.finalizeBillingRecord(username);
+			ChargerFactory factory = chooseFactory(username);
+			Charger charger = factory.createCharger();
+			charger.charge(username, to_user, duration);
+			successful_charge = (duration > 0 );
 		}
-		//remove returns before
-		charger.charge();
+		return successful_charge;
 	}
 
 	private String getUsernameFromHeader(HeaderAddress header) {
@@ -49,12 +59,19 @@ public class BillingService {
 				uriString.indexOf("@"));
 	}
 
-	private ChargerFactory chooseFactory(Request request) {
-		/*
-		 * Based on request return the factory you want
-		 * me switch
-		 */
-		
+	private ChargerFactory chooseFactory(String username) {
+		switch (mBillingDB.getPlan(username))
+		{ 
+		  case 0:
+			  GeneralFactory factory = new GeneralFactory();
+		        return factory;
+		   case 1:
+			  FriendsFactory friendfactory = new FriendsFactory();
+			  return friendfactory;
+		   case 2:
+			   FreeSundayFactory sundayfactory = new FreeSundayFactory();
+				  return sundayfactory;
+		}
 		return null;
 	}
 }

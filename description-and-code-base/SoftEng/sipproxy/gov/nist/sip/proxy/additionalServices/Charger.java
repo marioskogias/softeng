@@ -9,7 +9,7 @@ public class Charger {
 		mBillingDB = new BillingDB();
 	}
 	
-	public void charge() {
+	public void charge(String username, String to_user, long duration) {
 		// overrided
 	}
 }
