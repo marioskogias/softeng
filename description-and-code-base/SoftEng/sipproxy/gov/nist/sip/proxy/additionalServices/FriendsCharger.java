@@ -1,17 +1,17 @@
 package gov.nist.sip.proxy.additionalServices;
 
-import gov.nist.sip.db.BillingDB;
-
 public class FriendsCharger extends Charger {
+	int FF_COST = 2;
+	int DEFAULT_COST = 10;
+	
 	@Override
-	public void charge(String username, String to_user, long duration) {
-		BillingDB mBillingDB = new BillingDB();
-		if ((mBillingDB.checkRelation(username, to_user, "friends")) || 
-				mBillingDB.checkRelation(username, to_user, "family")){
-			System.out.print(duration*5);
+	public long charge(String username, String to_user, long duration) {
+		String relation = mBillingDB.getRelation(username, to_user);
+		if (relation.equals("friends") || relation.equals("family")){
+			return FF_COST*duration; 
 		}
 		else{
-			System.out.print(duration*10);
+			return DEFAULT_COST*duration; 
 		}
 	}
 }

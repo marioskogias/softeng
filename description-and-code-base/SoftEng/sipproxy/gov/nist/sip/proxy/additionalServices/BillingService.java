@@ -7,6 +7,7 @@ import javax.sip.header.FromHeader;
 import javax.sip.header.HeaderAddress;
 import javax.sip.header.ToHeader;
 import javax.sip.message.Request;
+
 import gov.nist.sip.proxy.additionalServices.FriendsFactory;
 import gov.nist.sip.proxy.additionalServices.GeneralFactory;
 import gov.nist.sip.proxy.additionalServices.FreeSundayFactory;
@@ -26,30 +27,38 @@ public class BillingService {
 		return mBillingDB.addBillingRecord(username);
 	}
 
+	long calculateDuration(long startTime) {
+		return (long) Math.ceil((System.currentTimeMillis() - startTime)
+		//		/ (double) 1000 / 60);
+				/ (double) 1000 );
+	}
+
 	public boolean stopBilling(Request request) {
-		boolean successful_charge = false;
 		HeaderAddress header = (HeaderAddress) request
 				.getHeader(FromHeader.NAME);
 		String username = getUsernameFromHeader(header);
 		header = (HeaderAddress) request.getHeader(ToHeader.NAME);
 		String to_user = getUsernameFromHeader(header);
-		long duration = mBillingDB.finalizeBillingRecord(username);
-		if (duration != 0) {
-			ChargerFactory factory = chooseFactory(username);
+		BillingInfo info = mBillingDB
+				.getCurrentBillingRecord(to_user, username);
+		try {
+			long duration = calculateDuration(info.startTime);
+
+			String caller = info.caller;
+			String callee = username.equals(caller) ? to_user : username;
+			
+			ChargerFactory factory = chooseFactory(caller);
 			Charger charger = factory.createCharger();
-			charger.charge(username, to_user, duration);
-			successful_charge = true;
-		} else {
-			String tempname = username;
-			username = to_user;
-			to_user = tempname;
-			duration = mBillingDB.finalizeBillingRecord(username);
-			ChargerFactory factory = chooseFactory(username);
-			Charger charger = factory.createCharger();
-			charger.charge(username, to_user, duration);
-			successful_charge = (duration > 0 );
+			
+
+			long cost = charger.charge(caller, callee, duration);
+
+			return mBillingDB.finalizeBillingRecord(info.id, duration, cost);
+
+		} catch (NullPointerException e) {
+			System.err.println("Caught IOException: " + e.getMessage());
+			return false;
 		}
-		return successful_charge;
 	}
 
 	private String getUsernameFromHeader(HeaderAddress header) {
@@ -60,18 +69,16 @@ public class BillingService {
 	}
 
 	private ChargerFactory chooseFactory(String username) {
-		switch (mBillingDB.getPlan(username))
-		{ 
-		  case 0:
-			  GeneralFactory factory = new GeneralFactory();
-		        return factory;
-		   case 1:
-			  FriendsFactory friendfactory = new FriendsFactory();
-			  return friendfactory;
-		   case 2:
-			   FreeSundayFactory sundayfactory = new FreeSundayFactory();
-				  return sundayfactory;
+		switch (mBillingDB.getPlan(username)) {
+		case 1:
+			FriendsFactory friendfactory = new FriendsFactory();
+			return friendfactory;
+		case 2:
+			FreeSundayFactory sundayfactory = new FreeSundayFactory();
+			return sundayfactory;
+		default:
+			GeneralFactory factory = new GeneralFactory();
+			return factory;
 		}
-		return null;
 	}
 }

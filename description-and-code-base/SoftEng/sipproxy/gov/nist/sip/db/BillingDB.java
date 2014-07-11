@@ -1,5 +1,8 @@
 package gov.nist.sip.db;
 
+import gov.nist.sip.proxy.additionalServices.BillingInfo;
+import gov.nist.sip.proxy.additionalServices.BillingService;
+
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.PreparedStatement;
@@ -26,7 +29,7 @@ public class BillingDB {
 			String selectSql = "SELECT plan FROM users WHERE username=?;";
 			PreparedStatement statement = mConnection.prepareStatement(selectSql);
 			statement.setString(1, username);
-			statement.setLong(2, -1);
+			//statement.setLong(2, -1);
 			ResultSet query = statement.executeQuery();
 			if (!query.first()) {
 				return 0;
@@ -51,66 +54,52 @@ public class BillingDB {
 		}
 	}
 	
-	public boolean checkRelation(String username, String to_user, String relation){
+	public String getRelation(String username, String to_user){
 		try {
 			connectIfNeeded();
-			String sql =  "SELECT * FROM friendlist where fromuser = ? AND touser = ? AND relation = ?;";
+			String sql =  "SELECT relation FROM friendlist where fromuser = ? AND touser = ?;";
 			PreparedStatement statement = mConnection.prepareStatement(sql);
 			statement.setString(1, username);
 			statement.setString(2, to_user);
-			statement.setString(3, relation);
 			ResultSet rs = statement.executeQuery();
 			if (rs.next()) {
-				return true;
+				return rs.getString("relation");
 			} else
-				return false;
+				return null;
 		} catch (SQLException e) {
 			throw new RuntimeException("Issue while inserting into the database", e);
 		}
 	}
 
-	public long finalizeBillingRecord(String username) {
+	public boolean finalizeBillingRecord(int id, long duration, long cost) {
 		try {
-			ResultSet query = getCurrentBillingRecord(username);
-			if (query == null) {
-				return 0;
-			}
-			long id = query.getLong("id");
-			long startTime = query.getLong("start_time");
-			query.close();
 			connectIfNeeded();
-			String sql = "UPDATE billing SET duration=? WHERE id=? LIMIT 1;";
+			String sql = "UPDATE billing SET duration=?, cost=? WHERE id=? LIMIT 1;";
 			PreparedStatement statement = mConnection.prepareStatement(sql);
-			// the duration is in minutes and round up
-			long duration = (long) Math.ceil((System.currentTimeMillis() - startTime) / (double) 1000 / 60); 
-			System.out.println("The duration is "+ Long.toString(duration));
 			statement.setLong(1, duration);
-			statement.setLong(2, id);
+			statement.setLong(2, cost);
+			statement.setLong(3, id);
 			int result = statement.executeUpdate();
-			if (result > 0){
-				return duration;
-			}
-			else {
-				return 0;
-			}
-			
+			return (result > 0);
 		} catch (SQLException e) {
 			throw new RuntimeException("Issue while updating the database", e);
 		}
 	}
 		
-	private ResultSet getCurrentBillingRecord(String username) {
+	public BillingInfo getCurrentBillingRecord(String username1, String username2) {
 		try {
 			connectIfNeeded();
-			String selectSql = "SELECT id, start_time FROM billing WHERE username=? AND duration=?;";
+			String selectSql = "SELECT id, start_time, username FROM billing WHERE (username=? OR username = ?) AND duration=?;";
 			PreparedStatement statement = mConnection.prepareStatement(selectSql);
-			statement.setString(1, username);
-			statement.setLong(2, -1);
+			statement.setString(1, username1);
+			statement.setString(2, username2);
+			statement.setLong(3, -1);
+			System.out.format("\n\n\n\nThe query is %s \n\n\n\n", statement.toString());
 			ResultSet query = statement.executeQuery();
 			if (!query.first()) {
 				return null;
 			}
-			return query;
+			return new BillingInfo(query.getInt("id"), query.getLong("start_time"), query.getString("username"));
 		} catch (SQLException e) {
 			throw new RuntimeException("Issue while querying the database", e);
 		}

@@ -29,7 +29,7 @@ public class FriendlistDB {
 				conn = DriverManager.getConnection(dbCred.getUrl(),
 						dbCred.getUsername(), dbCred.getPassword());
 			stmt = conn
-					.prepareStatement("SELECT touser, relation FROM friendlist where fromuser = ? AND relation = friend");
+					.prepareStatement("SELECT touser, relation FROM friendlist where fromuser = ? AND relation = \"friend\"");
 			stmt.setString(1, username);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
