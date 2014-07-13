@@ -18,7 +18,6 @@ import javax.swing.BoxLayout;
 import javax.swing.JButton;
 import javax.swing.JDialog;
 import javax.swing.JLabel;
-import javax.swing.JList;
 import javax.swing.JPanel;
 import javax.swing.JTextArea;
 import javax.swing.JTextField;
@@ -37,9 +36,9 @@ public class FriendSplash extends JDialog {
 
 	private String CMD_ADD = "cmd.add";
 
-	JTextArea friendlist;
+	JTextArea friends;
 	JTextField friendControlTextField;
-	JTextField friendRelationTextField;
+	JTextField relationControlTextField;
 	JButton removeButton;
 	JButton addButton;
 
@@ -47,9 +46,10 @@ public class FriendSplash extends JDialog {
 	protected String action;
 	protected String relation;
 
-	protected void friendList(String myfriendslist) {
-		friendlist.setText(myfriendslist);
-		friendlist.setEditable(false);
+	protected void friendList(String friendlist) {
+		System.out.println(friendlist);
+		friends.setText(friendlist);
+		friends.setEditable(false);
 		removeButton.setEnabled(true);
 	}
 
@@ -63,7 +63,7 @@ public class FriendSplash extends JDialog {
 		Container contents = getContentPane();
 		contents.setLayout(new BorderLayout());
 
-		String title = "Friendlist Control Panel";
+		String title = "Friend lists";
 
 		setTitle(title);
 		setResizable(true);
@@ -75,9 +75,9 @@ public class FriendSplash extends JDialog {
 
 		// Accessibility -- all frames, dialogs, and applets should
 		// have a description
-		getAccessibleContext().setAccessibleDescription("Friend Splash");
+		getAccessibleContext().setAccessibleDescription("Friendlist Splash");
 
-		String authPromptLabelValue = "Please enter the contact you want to add in your lists.";
+		String authPromptLabelValue = "Please enter the contact you wish to add to your friend lists.";
 
 		JLabel splashLabel = new JLabel(authPromptLabelValue);
 		splashLabel.setBorder(BorderFactory.createEmptyBorder(10, 10, 10, 10));
@@ -88,24 +88,24 @@ public class FriendSplash extends JDialog {
 		JPanel centerPane = new JPanel();
 		centerPane.setLayout(new GridBagLayout());
 
-		JTextField friendControlTextField = new JTextField(); // needed below
-		JTextField friendRelationTextField = new JTextField();
-		friendlist = new JTextArea();// new JLabel();
+		friendControlTextField = new JTextField(); // needed below
+		friends = new JTextArea();// new JLabel();
 
 		// user name label
-		JLabel removeLabel = new JLabel();
-		removeLabel.setDisplayedMnemonic('R');
+		JLabel addfriendLabel = new JLabel();
+		addfriendLabel.setDisplayedMnemonic('U');
 		// setLabelFor() allows the mnemonic to work
-		removeLabel.setLabelFor(friendControlTextField);
+		addfriendLabel.setLabelFor(friendControlTextField);
+
+		relationControlTextField = new JTextField();
 		
-		JLabel relationLabel = new JLabel();
-		relationLabel.setDisplayedMnemonic('Y');
-		// setLabelFor() allows the mnemonic to work
-		relationLabel.setLabelFor(friendRelationTextField);
+		JLabel addrelationLabel = new JLabel();
+		addrelationLabel.setDisplayedMnemonic('R');
+		addrelationLabel.setLabelFor(relationControlTextField);
 		
 		int gridy = 0;
 		JLabel friendListLabel = new JLabel();
-		friendListLabel.setText("Contacts list:");
+		friendListLabel.setText("Contacts in lists:");
 		GridBagConstraints c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = gridy;
@@ -119,15 +119,15 @@ public class FriendSplash extends JDialog {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 1.0;
 		c.insets = new Insets(12, 7, 0, 11);
-		centerPane.add(friendlist, c);
+		centerPane.add(friends, c);
 
-		removeLabel.setText("Select user:");
+		addfriendLabel.setText("Select contact:");
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = gridy;
 		c.anchor = GridBagConstraints.WEST;
 		c.insets = new Insets(12, 12, 0, 0);
-		centerPane.add(removeLabel, c);
+		centerPane.add(addfriendLabel, c);
 		// user name text
 		c = new GridBagConstraints();
 		c.gridx = 1;
@@ -137,14 +137,13 @@ public class FriendSplash extends JDialog {
 		c.insets = new Insets(12, 7, 0, 11);
 		centerPane.add(friendControlTextField, c);
 		
-		
-		relationLabel.setText("Relation with user(friend/family):");
+		addrelationLabel.setText("Select list to add to:");
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = gridy;
 		c.anchor = GridBagConstraints.WEST;
 		c.insets = new Insets(12, 12, 0, 0);
-		centerPane.add(relationLabel, c);
+		centerPane.add(addrelationLabel, c);
 		// user name text
 		c = new GridBagConstraints();
 		c.gridx = 1;
@@ -152,7 +151,7 @@ public class FriendSplash extends JDialog {
 		c.fill = GridBagConstraints.HORIZONTAL;
 		c.weightx = 1.0;
 		c.insets = new Insets(12, 7, 0, 11);
-		centerPane.add(friendRelationTextField, c);
+		centerPane.add(relationControlTextField, c);
 		
 		// Buttons along bottom of window
 		JPanel buttonPanel = new JPanel();
@@ -162,7 +161,7 @@ public class FriendSplash extends JDialog {
 
 		addButton = new JButton();
 		addButton.setEnabled(true);
-		addButton.setText("Add friend");
+		addButton.setText("Add");
 		addButton.setActionCommand(CMD_ADD);
 		addButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -173,7 +172,7 @@ public class FriendSplash extends JDialog {
 
 		removeButton = new JButton();
 		removeButton.setEnabled(false);
-		removeButton.setText("Remove");
+		removeButton.setText("Remove from lists");
 		removeButton.setActionCommand(CMD_REMOVE);
 		removeButton.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent event) {
@@ -220,12 +219,12 @@ public class FriendSplash extends JDialog {
 			toUser = null;
 		} else if (cmd.equals(CMD_REMOVE)) {
 			toUser = friendControlTextField.getText();
-			relation = friendRelationTextField.getText();
 			action = "remove";
+			relation = relationControlTextField.getText();
 		} else if (cmd.equals(CMD_ADD)) {
 			toUser = friendControlTextField.getText();
-			relation = friendRelationTextField.getText();
 			action = "add";
+			relation = relationControlTextField.getText();
 		}
 		setVisible(false);
 		dispose();

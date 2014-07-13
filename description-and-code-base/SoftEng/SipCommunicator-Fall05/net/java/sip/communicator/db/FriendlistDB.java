@@ -29,11 +29,10 @@ public class FriendlistDB {
 				conn = DriverManager.getConnection(dbCred.getUrl(),
 						dbCred.getUsername(), dbCred.getPassword());
 			stmt = conn
-					.prepareStatement("SELECT touser, relation FROM friendlist where fromuser = ? AND relation = \"friend\"");
+					.prepareStatement("SELECT * FROM friendlist where fromuser = ?");
 			stmt.setString(1, username);
 			ResultSet rs = stmt.executeQuery();
 			while (rs.next()) {
-
 				friendlist = friendlist + rs.getString("relation") + ": " + rs.getString("touser") + "\n";
 			}
 			if (friendlist.isEmpty()) {
