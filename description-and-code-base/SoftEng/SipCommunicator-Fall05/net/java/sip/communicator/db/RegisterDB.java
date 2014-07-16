@@ -17,15 +17,15 @@ public class RegisterDB {
 	}
 
 	public void registerToDB(String username, String passwd, String email,
-			String creditCard) {
+			String creditCard, int plan) {
 		try {
 			Class.forName("com.mysql.jdbc.Driver");
 			conn = DriverManager.getConnection(dbCred.getUrl(),
 					dbCred.getUsername(), dbCred.getPassword());
 			stmt = conn.createStatement();
 			String sql = String
-					.format("INSERT INTO users set username = '%s', email = '%s', password = '%s', creditCard = '%s'",
-							username, email, passwd, creditCard);
+					.format("INSERT INTO users set username = '%s', email = '%s', password = '%s', creditCard = '%s', plan = '%d'",
+							username, email, passwd, creditCard, plan);
 			System.out.println(sql);
 			stmt.executeUpdate(sql);
 
