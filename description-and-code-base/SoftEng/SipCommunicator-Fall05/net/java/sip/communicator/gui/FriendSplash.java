@@ -102,6 +102,7 @@ public class FriendSplash extends JDialog {
 		relationLabel.setDisplayedMnemonic('Y');
 		// setLabelFor() allows the mnemonic to work
 		relationLabel.setLabelFor(friendRelationTextField);
+		relationLabel.setLabelFor(friendRelationTextField);
 		
 		int gridy = 0;
 		JLabel friendListLabel = new JLabel();
@@ -138,13 +139,13 @@ public class FriendSplash extends JDialog {
 		centerPane.add(friendControlTextField, c);
 		
 		
-		relationLabel.setText("Relation with user(friend/family):");
+		relationLabel.setText("relation with user:");
 		c = new GridBagConstraints();
 		c.gridx = 0;
 		c.gridy = gridy;
 		c.anchor = GridBagConstraints.WEST;
 		c.insets = new Insets(12, 12, 0, 0);
-		centerPane.add(relationLabel, c);
+		centerPane.add(removeLabel, c);
 		// user name text
 		c = new GridBagConstraints();
 		c.gridx = 1;
