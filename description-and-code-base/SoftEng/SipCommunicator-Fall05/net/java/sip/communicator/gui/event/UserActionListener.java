@@ -87,10 +87,6 @@ public interface UserActionListener
     
     public void handleNewBlockRequest();
     
-    public void handleGetFriendList();
-    
-    public void handleNewFriendRequest();
-    
 /** @todo remove after testing */
 //    public void handlePropertiesSaveRequest();
 
